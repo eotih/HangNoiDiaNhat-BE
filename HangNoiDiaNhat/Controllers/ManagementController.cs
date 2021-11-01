@@ -302,9 +302,9 @@ namespace HangNoiDiaNhat.Controllers
             var result = db.ProductDetails.ToList();
             return result;
         }
-        [Route("GetImageByProductDetail")]
+        [Route("GetProductDetailByID")]
         [HttpGet]
-        public object GetImageByProductDetail(int ProductDetailID)
+        public object GetProductDetailByID(int ProductDetailID)
         {
             var result = db.ProductDetails.Where(x => x.ProductDetailID == ProductDetailID).FirstOrDefault();
             return result;
@@ -358,6 +358,218 @@ namespace HangNoiDiaNhat.Controllers
         {
             var obj = db.Images.Where(x => x.ImageID == ImageID).FirstOrDefault();
             db.Images.Remove(obj);
+            db.SaveChanges();
+            return new Response
+            {
+                Status = "Delete",
+                Message = "Delete Successfuly"
+            };
+        }
+        //---------------------------- Orders Zone ----------------------------//
+        [Route("SelectAllOrders")]
+        [HttpGet]
+        public object SelectAllOrders()
+        {
+            var result = (from ord in db.Orders
+                          select new
+                          {
+                              ord.Details,
+                              ord.Quantity,
+                              ord.TotalPrice,
+                              ord.CreatedAt,
+                              ord.UpdatedAt,
+                              ChiTietDonHang = db.OrderDetails.Where(x=>x.OrderDetailID == ord.OrderDetailID).ToList(),
+                              NhanVien = db.Accounts.Where(x=>x.AccountID == ord.AccountID).FirstOrDefault(),
+                              TrangThai = db.States.Where(x=>x.StateID == ord.StateID).FirstOrDefault(),
+                              HinhThucThanhToan = db.Payments.Where(x=>x.PaymentID == ord.PaymentID).FirstOrDefault(),
+                              TinhTrangDonHang = db.TrackingOrders.Where(x=>x.TrackingOrderID == ord.TrackingOrderID).FirstOrDefault(),
+                          }).ToList();
+            return result;
+        }
+        [Route("GetOrdersById")]
+        [HttpGet]
+        public object GetOrdersById(int OrderID)
+        {
+            var getOrdersById = db.Orders.Where(x => x.OrderID == OrderID).ToList();
+            var result = (from ord in getOrdersById
+                          select new
+                          {
+                              ord.Details,
+                              ord.Quantity,
+                              ord.TotalPrice,
+                              ord.CreatedAt,
+                              ord.UpdatedAt,
+                              ChiTietDonHang = db.OrderDetails.Where(x => x.OrderDetailID == ord.OrderDetailID).ToList(),
+                              NhanVien = db.Accounts.Where(x => x.AccountID == ord.AccountID).FirstOrDefault(),
+                              TrangThai = db.States.Where(x => x.StateID == ord.StateID).FirstOrDefault(),
+                              HinhThucThanhToan = db.Payments.Where(x => x.PaymentID == ord.PaymentID).FirstOrDefault(),
+                              TinhTrangDonHang = db.TrackingOrders.Where(x => x.TrackingOrderID == ord.TrackingOrderID).FirstOrDefault(),
+                          }).ToList();
+            return result;
+        }
+
+        [Route("AddOrEditOrder")]
+        [HttpPost]
+        public object AddOrEditOrder(Order1 Order1)
+        {
+            if (Order1.OrderID == 0)
+            {
+                Order ord = new Order
+                {
+                    OrderDetailID = Order1.OrderDetailID,
+                    AccountID = Order1.AccountID,
+                    StateID = Order1.StateID,
+                    PaymentID = Order1.PaymentID,
+                    TrackingOrderID = Order1.TrackingOrderID,
+                    Details = Order1.Details,
+                    Quantity = Order1.Quantity,
+                    TotalPrice = Order1.TotalPrice,
+                    CreatedAt = DateTime.Now
+                };
+                db.Orders.Add(ord);
+                db.SaveChanges();
+                return new Response
+                {
+                    Status = "Success",
+                    Message = "Data Success"
+                };
+            }
+            else
+            {
+                var obj = db.Orders.Where(x => x.OrderID == Order1.OrderID).FirstOrDefault();
+                if (obj.OrderID > 0)
+                {
+                    obj.OrderDetailID = Order1.OrderDetailID;
+                    obj.AccountID = Order1.AccountID;
+                    obj.StateID = Order1.StateID;
+                    obj.PaymentID = Order1.PaymentID;
+                    obj.TrackingOrderID = Order1.TrackingOrderID;
+                    obj.Details = Order1.Details;
+                    obj.Quantity = Order1.Quantity;
+                    obj.TotalPrice = Order1.TotalPrice;
+                    obj.UpdatedAt = DateTime.Now;
+                    db.SaveChanges();
+                    return new Response
+                    {
+                        Status = "Updated",
+                        Message = "Updated Successfully"
+                    };
+                }
+            }
+            return new Response
+            {
+                Status = "Error",
+                Message = "Data not insert"
+            };
+        }
+        [Route("DeleteOrder")]
+        [HttpDelete]
+        public object DeleteOrder(int OrderID)
+        {
+            var obj = db.Orders.Where(x => x.OrderID == OrderID).FirstOrDefault();
+            db.Orders.Remove(obj);
+            db.SaveChanges();
+            return new Response
+            {
+                Status = "Delete",
+                Message = "Delete Successfuly"
+            };
+        }
+        //---------------------------- OrderDetails Zone ----------------------------//
+        [Route("SelectAllOrderDetails")]
+        [HttpGet]
+        public object SelectAllOrderDetails()
+        {
+            var result = (from ord in db.OrderDetails
+                          select new
+                          {
+                              ord.Details,
+                              ord.Quantity,
+                              ord.CreatedAt,
+                              ord.UpdatedAt,
+                              ord.OrderID,
+                              SanPham = db.Products.Where(x => x.ProductID == ord.ProductID).FirstOrDefault(),
+                              KhachHang = db.Customers.Where(x => x.CustomerID == ord.CustomerID).FirstOrDefault(),
+                              TrangThai = db.States.Where(x => x.StateID == ord.StateID).FirstOrDefault(),
+                          }).ToList();
+            return result;
+        }
+        [Route("GetOrderDetailById")]
+        [HttpGet]
+        public object GetOrderDetailById(int OrderDetailID)
+        {
+            var getOrderDetailById = db.OrderDetails.Where(x => x.OrderDetailID == OrderDetailID).ToList();
+            var result = (from ord in getOrderDetailById
+                          select new
+                          {
+                              ord.Details,
+                              ord.Quantity,
+                              ord.CreatedAt,
+                              ord.UpdatedAt,
+                              ord.OrderID,
+                              SanPham = db.Products.Where(x => x.ProductID == ord.ProductID).FirstOrDefault(),
+                              KhachHang = db.Customers.Where(x => x.CustomerID == ord.CustomerID).FirstOrDefault(),
+                              TrangThai = db.States.Where(x => x.StateID == ord.StateID).FirstOrDefault(),
+                          }).ToList();
+            return result;
+        }
+
+        [Route("AddOrEditOrderDetails")]
+        [HttpPost]
+        public object AddOrEditOrderDetails(OrderDetail1 OrderDetail1)
+        {
+            if (OrderDetail1.OrderDetailID == 0)
+            {
+                OrderDetail ord = new OrderDetail
+                {
+                    OrderID = OrderDetail1.OrderID,
+                    ProductID = OrderDetail1.ProductID,
+                    CustomerID = OrderDetail1.CustomerID,
+                    StateID = OrderDetail1.StateID,
+                    Details = OrderDetail1.Details,
+                    Quantity = OrderDetail1.Quantity,
+                    CreatedAt = DateTime.Now
+                };
+                db.OrderDetails.Add(ord);
+                db.SaveChanges();
+                return new Response
+                {
+                    Status = "Success",
+                    Message = "Data Success"
+                };
+            }
+            else
+            {
+                var obj = db.OrderDetails.Where(x => x.OrderDetailID == OrderDetail1.OrderDetailID).FirstOrDefault();
+                if (obj.OrderDetailID > 0)
+                {
+                    obj.OrderID = OrderDetail1.OrderID;
+                    obj.ProductID = OrderDetail1.ProductID;
+                    obj.CustomerID = OrderDetail1.CustomerID;
+                    obj.StateID = OrderDetail1.StateID;
+                    obj.Details = OrderDetail1.Details;
+                    obj.Quantity = OrderDetail1.Quantity;
+                    obj.UpdatedAt = DateTime.Now;
+                    db.SaveChanges();
+                    return new Response
+                    {
+                        Status = "Updated",
+                        Message = "Updated Successfully"
+                    };
+                }
+            }
+            return new Response
+            {
+                Status = "Error",
+                Message = "Data not insert"
+            };
+        }
+        [Route("DeleteOrderDetail")]
+        [HttpDelete]
+        public object DeleteOrderDetail(int OrderDetailID)
+        {
+            var obj = db.OrderDetails.Where(x => x.OrderDetailID == OrderDetailID).FirstOrDefault();
+            db.OrderDetails.Remove(obj);
             db.SaveChanges();
             return new Response
             {

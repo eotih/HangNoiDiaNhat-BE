@@ -15,21 +15,21 @@ namespace HangNoiDiaNhat.Models
     public partial class Product
     {
         public int ProductID { get; set; }
-        public int CategoryID { get; set; }
-        public int AccountID { get; set; }
-        public int ProductDetailID { get; set; }
-        public int BrandID { get; set; }
-        public int ImageID { get; set; }
+        public Nullable<int> CategoryID { get; set; }
+        public Nullable<int> AccountID { get; set; }
+        public Nullable<int> ProductDetailID { get; set; }
+        public Nullable<int> BrandID { get; set; }
+        public Nullable<int> ImageID { get; set; }
         public string Slug { get; set; }
         public string Thumbnail { get; set; }
         public string Details { get; set; }
         public string Name { get; set; }
-        public int Quantity { get; set; }
-        public int Price { get; set; }
-        public double Discount { get; set; }
-        public int ImportPrice { get; set; }
-        public int Sold { get; set; }
-        public System.DateTime CreatedAt { get; set; }
+        public Nullable<int> Quantity { get; set; }
+        public Nullable<int> Price { get; set; }
+        public Nullable<double> Discount { get; set; }
+        public Nullable<int> ImportPrice { get; set; }
+        public Nullable<int> Sold { get; set; }
+        public Nullable<System.DateTime> CreatedAt { get; set; }
         public Nullable<System.DateTime> UpdatedAt { get; set; }
     }
 }

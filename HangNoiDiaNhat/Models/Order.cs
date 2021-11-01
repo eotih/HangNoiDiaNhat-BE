@@ -15,16 +15,15 @@ namespace HangNoiDiaNhat.Models
     public partial class Order
     {
         public int OrderID { get; set; }
-        public int OrderDetailID { get; set; }
-        public int AccountID { get; set; }
-        public int StateID { get; set; }
-        public int PaymentID { get; set; }
-        public int TrackingOrderID { get; set; }
-        public int ShipperID { get; set; }
+        public Nullable<int> OrderDetailID { get; set; }
+        public Nullable<int> AccountID { get; set; }
+        public Nullable<int> StateID { get; set; }
+        public Nullable<int> PaymentID { get; set; }
+        public Nullable<int> TrackingOrderID { get; set; }
         public string Details { get; set; }
-        public int Quantity { get; set; }
-        public int TotalPrice { get; set; }
-        public System.DateTime CreatedAt { get; set; }
+        public Nullable<int> Quantity { get; set; }
+        public Nullable<int> TotalPrice { get; set; }
+        public Nullable<System.DateTime> CreatedAt { get; set; }
         public Nullable<System.DateTime> UpdatedAt { get; set; }
     }
 }

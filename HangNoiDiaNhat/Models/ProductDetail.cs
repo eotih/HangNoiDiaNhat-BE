@@ -15,9 +15,9 @@ namespace HangNoiDiaNhat.Models
     public partial class ProductDetail
     {
         public int ProductDetailID { get; set; }
-        public int UtilityID { get; set; }
-        public int ProductID { get; set; }
-        public System.DateTime CreatedAt { get; set; }
+        public Nullable<int> UtilityID { get; set; }
+        public Nullable<int> ProductID { get; set; }
+        public Nullable<System.DateTime> CreatedAt { get; set; }
         public Nullable<System.DateTime> UpdatedAt { get; set; }
     }
 }

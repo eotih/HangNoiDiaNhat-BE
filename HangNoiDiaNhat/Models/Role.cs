@@ -16,7 +16,7 @@ namespace HangNoiDiaNhat.Models
     {
         public int RoleID { get; set; }
         public string RoleName { get; set; }
-        public System.DateTime CreatedAt { get; set; }
+        public Nullable<System.DateTime> CreatedAt { get; set; }
         public Nullable<System.DateTime> UpdatedAt { get; set; }
     }
 }

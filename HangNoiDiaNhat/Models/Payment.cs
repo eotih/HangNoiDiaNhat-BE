@@ -16,7 +16,7 @@ namespace HangNoiDiaNhat.Models
     {
         public int PaymentID { get; set; }
         public string Name { get; set; }
-        public System.DateTime CreatedAt { get; set; }
+        public Nullable<System.DateTime> CreatedAt { get; set; }
         public Nullable<System.DateTime> UpdatedAt { get; set; }
     }
 }

@@ -313,8 +313,8 @@
     <Content Include="Global.asax" />
     <Content Include="Models\HangNoiDiaNhat.Context.tt">
       <Generator>TextTemplatingFileGenerator</Generator>
-      <LastGenOutput>HangNoiDiaNhat.Context.cs</LastGenOutput>
       <DependentUpon>HangNoiDiaNhat.edmx</DependentUpon>
+      <LastGenOutput>HangNoiDiaNhat.Context.cs</LastGenOutput>
     </Content>
     <Content Include="Models\HangNoiDiaNhat.tt">
       <Generator>TextTemplatingFileGenerator</Generator>

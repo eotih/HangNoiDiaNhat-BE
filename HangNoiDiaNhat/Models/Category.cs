@@ -18,7 +18,7 @@ namespace HangNoiDiaNhat.Models
         public string Name { get; set; }
         public string Slug { get; set; }
         public string Thumbnail { get; set; }
-        public System.DateTime CreatedAt { get; set; }
+        public Nullable<System.DateTime> CreatedAt { get; set; }
         public Nullable<System.DateTime> UpdatedAt { get; set; }
     }
 }
