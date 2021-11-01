@@ -175,6 +175,7 @@ namespace HangNoiDiaNhat.Controllers
                              acc.Email,
                              acc.Password,
                              acc.Address,
+                             acc.Image,
                              acc.CreatedAt,
                              acc.UpdatedAt,
                              Role = db.Roles.Where(x => x.RoleID == acc.RoleID).FirstOrDefault(),
@@ -195,6 +196,7 @@ namespace HangNoiDiaNhat.Controllers
                               acc.Email,
                               acc.Password,
                               acc.Address,
+                              acc.Image,
                               acc.CreatedAt,
                               acc.UpdatedAt,
                               Role = db.Roles.Where(x => x.RoleID == acc.RoleID).FirstOrDefault(),
@@ -214,6 +216,7 @@ namespace HangNoiDiaNhat.Controllers
                     FullName = Account1.FullName,
                     Phone = Account1.Phone,
                     Email = Account1.Email,
+                    Image = Account1.Image,
                     Password = Utilities.GetMD5(Account1.Password),
                     Address = Account1.Address,
                     CreatedAt = DateTime.Now
@@ -235,6 +238,7 @@ namespace HangNoiDiaNhat.Controllers
                     obj.FullName = Account1.FullName;
                     obj.Phone = Account1.Phone;
                     obj.Email = Account1.Email;
+                    obj.Image = Account1.Image;
                     obj.Password = Utilities.GetMD5(Account1.Password);
                     obj.Address = Account1.Address;
                     obj.UpdatedAt = DateTime.Now;
