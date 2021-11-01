@@ -74,9 +74,9 @@ namespace HangNoiDiaNhat.Controllers
         }
         [Route("DeleteField")]
         [HttpDelete]
-        public object DeleteField(Field1 Field1)
+        public object DeleteField(int FieldID)
         {
-            var obj = db.Fields.Where(x => x.FieldID == Field1.FieldID).FirstOrDefault();
+            var obj = db.Fields.Where(x => x.FieldID == FieldID).FirstOrDefault();
             db.Fields.Remove(obj);
             db.SaveChanges();
             return new Response
@@ -178,9 +178,9 @@ namespace HangNoiDiaNhat.Controllers
         }
         [Route("DeletePost")]
         [HttpDelete]
-        public object DeletePost(Post1 Post1)
+        public object DeletePost(int PostID)
         {
-            var obj = db.Posts.Where(x => x.PostID == Post1.PostID).FirstOrDefault();
+            var obj = db.Posts.Where(x => x.PostID == PostID).FirstOrDefault();
             db.Posts.Remove(obj);
             db.SaveChanges();
             return new Response

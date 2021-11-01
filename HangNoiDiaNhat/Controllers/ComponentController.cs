@@ -70,9 +70,9 @@ namespace HangNoiDiaNhat.Controllers
         }
         [Route("DeleteState")]
         [HttpDelete]
-        public object DeleteState(State1 state1)
+        public object DeleteState(int StateID)
         {
-            var obj = db.States.Where(x => x.StateID == state1.StateID).FirstOrDefault();
+            var obj = db.States.Where(x => x.StateID == StateID).FirstOrDefault();
             db.States.Remove(obj);
             db.SaveChanges();
             return new Response
@@ -139,9 +139,9 @@ namespace HangNoiDiaNhat.Controllers
         }
         [Route("DeletePayment")]
         [HttpDelete]
-        public object DeletePayment(Payment payment1)
+        public object DeletePayment(int PaymentID)
         {
-            var obj = db.Payments.Where(x => x.PaymentID == payment1.PaymentID).FirstOrDefault();
+            var obj = db.Payments.Where(x => x.PaymentID == PaymentID).FirstOrDefault();
             db.Payments.Remove(obj);
             db.SaveChanges();
             return new Response
@@ -208,9 +208,9 @@ namespace HangNoiDiaNhat.Controllers
         }
         [Route("DeleteRole")]
         [HttpDelete]
-        public object DeleteRole(Role1 role1)
+        public object DeleteRole(int RoleID)
         {
-            var obj = db.Roles.Where(x => x.RoleID == role1.RoleID).FirstOrDefault();
+            var obj = db.Roles.Where(x => x.RoleID == RoleID).FirstOrDefault();
             db.Roles.Remove(obj);
             db.SaveChanges();
             return new Response
@@ -281,9 +281,9 @@ namespace HangNoiDiaNhat.Controllers
         }
         [Route("DeleteCategory")]
         [HttpDelete]
-        public object DeleteCategory(Category1 cate)
+        public object DeleteCategory(int CategoryID)
         {
-            var obj = db.Categories.Where(x => x.CategoryID == cate.CategoryID).FirstOrDefault();
+            var obj = db.Categories.Where(x => x.CategoryID == CategoryID).FirstOrDefault();
             db.Categories.Remove(obj);
             db.SaveChanges();
             return new Response
@@ -354,9 +354,9 @@ namespace HangNoiDiaNhat.Controllers
         }
         [Route("DeleteBrand")]
         [HttpDelete]
-        public object DeleteBrand(Brand1 brand1)
+        public object DeleteBrand(int BrandID)
         {
-            var obj = db.Brands.Where(x => x.BrandID == brand1.BrandID).FirstOrDefault();
+            var obj = db.Brands.Where(x => x.BrandID == BrandID).FirstOrDefault();
             db.Brands.Remove(obj);
             db.SaveChanges();
             return new Response
@@ -426,9 +426,9 @@ namespace HangNoiDiaNhat.Controllers
         }
         [Route("DeleteUtil")]
         [HttpDelete]
-        public object DeleteUtil(Util Util)
+        public object DeleteUtil(int UtilityID)
         {
-            var obj = db.Utilities.Where(x => x.UtilityID == Util.UtilityID).FirstOrDefault();
+            var obj = db.Utilities.Where(x => x.UtilityID == UtilityID).FirstOrDefault();
             db.Utilities.Remove(obj);
             db.SaveChanges();
             return new Response
@@ -495,9 +495,9 @@ namespace HangNoiDiaNhat.Controllers
         }
         [Route("DeleteService")]
         [HttpDelete]
-        public object DeleteService(Service1 Service1)
+        public object DeleteService(int ServiceID)
         {
-            var obj = db.Services.Where(x => x.ServiceID == Service1.ServiceID).FirstOrDefault();
+            var obj = db.Services.Where(x => x.ServiceID == ServiceID).FirstOrDefault();
             db.Services.Remove(obj);
             db.SaveChanges();
             return new Response

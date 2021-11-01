@@ -7,7 +7,7 @@ using System.Web.Http;
 
 namespace HangNoiDiaNhat.Controllers
 {
-    [RoutePrefix("API")]
+    [RoutePrefix("API/Delivery")]
     public class DeliveryController : ApiController
     {
     }

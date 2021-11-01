@@ -180,12 +180,12 @@
     <Compile Include="Areas\HelpPage\SampleGeneration\SampleDirection.cs" />
     <Compile Include="Areas\HelpPage\SampleGeneration\TextSample.cs" />
     <Compile Include="Areas\HelpPage\XmlDocumentationProvider.cs" />
-    <Compile Include="Controllers\AccountController.cs" />
     <Compile Include="Controllers\ArticleController.cs" />
     <Compile Include="Controllers\ComponentController.cs" />
     <Compile Include="Controllers\DeliveryController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\ManagementController.cs" />
+    <Compile Include="Controllers\OrganizationController.cs" />
     <Compile Include="Controllers\ValuesController.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
@@ -240,6 +240,7 @@
     <Compile Include="Models\Image.cs">
       <DependentUpon>HangNoiDiaNhat.tt</DependentUpon>
     </Compile>
+    <Compile Include="Models\Image1.cs" />
     <Compile Include="Models\Login.cs" />
     <Compile Include="Models\Order.cs">
       <DependentUpon>HangNoiDiaNhat.tt</DependentUpon>
@@ -268,6 +269,7 @@
     <Compile Include="Models\ProductDetail.cs">
       <DependentUpon>HangNoiDiaNhat.tt</DependentUpon>
     </Compile>
+    <Compile Include="Models\ProductDetail1.cs" />
     <Compile Include="Models\Response.cs" />
     <Compile Include="Models\Role.cs">
       <DependentUpon>HangNoiDiaNhat.tt</DependentUpon>
