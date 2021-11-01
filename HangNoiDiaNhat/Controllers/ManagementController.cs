@@ -22,9 +22,9 @@ namespace HangNoiDiaNhat.Controllers
         }
         [Route("GetCustomerById")]
         [HttpGet]
-        public object GetCustomerById(Customer1 Customer1)
+        public object GetCustomerById(int CustomerID)
         {
-            var result = db.Customers.Where(x => x.CustomerID == Customer1.CustomerID).FirstOrDefault();
+            var result = db.Customers.Where(x => x.CustomerID == CustomerID).FirstOrDefault();
             return result;
         }
 
@@ -99,9 +99,9 @@ namespace HangNoiDiaNhat.Controllers
         }
         [Route("GetImageByProductId")]
         [HttpGet]
-        public object GetImageByProductId(Image1 Image1)
+        public object GetImageByProductId(int ProductID)
         {
-            var result = db.Images.Where(x => x.ProductID == Image1.ProductID).FirstOrDefault();
+            var result = db.Images.Where(x => x.ProductID == ProductID).FirstOrDefault();
             return result;
         }
 
@@ -189,9 +189,9 @@ namespace HangNoiDiaNhat.Controllers
         }
         [Route("GetProductById")]
         [HttpGet]
-        public object GetProductById(Product1 Product1)
+        public object GetProductById(int ProductID)
         {
-            var getProductById = db.Products.Where(x => x.ProductID == Product1.ProductID).ToList();
+            var getProductById = db.Products.Where(x => x.ProductID == ProductID).ToList();
             var result = (from prd in getProductById
                           select new
                           {
@@ -304,9 +304,9 @@ namespace HangNoiDiaNhat.Controllers
         }
         [Route("GetImageByProductDetail")]
         [HttpGet]
-        public object GetImageByProductDetail(ProductDetail1 ProductDetail1)
+        public object GetImageByProductDetail(int ProductDetailID)
         {
-            var result = db.ProductDetails.Where(x => x.ProductDetailID == ProductDetail1.ProductDetailID).FirstOrDefault();
+            var result = db.ProductDetails.Where(x => x.ProductDetailID == ProductDetailID).FirstOrDefault();
             return result;
         }
 

@@ -22,9 +22,9 @@ namespace HangNoiDiaNhat.Controllers
         }
         [Route("GetOrganizationById")]
         [HttpGet]
-        public object GetOrganizationById(Organization1 Organization1)
+        public object GetOrganizationById(int OrganizationID)
         {
-            var result = db.Organizations.Where(x => x.OrganizationID == Organization1.OrganizationID).FirstOrDefault();
+            var result = db.Organizations.Where(x => x.OrganizationID == OrganizationID).FirstOrDefault();
             return result;
         }
 
@@ -99,9 +99,9 @@ namespace HangNoiDiaNhat.Controllers
         }
         [Route("GetBannerById")]
         [HttpGet]
-        public object GetBannerById(Banner1 Banner1)
+        public object GetBannerById(int BannerID)
         {
-            var result = db.Banners.Where(x => x.BannerID == Banner1.BannerID).FirstOrDefault();
+            var result = db.Banners.Where(x => x.BannerID == BannerID).FirstOrDefault();
             return result;
         }
 
@@ -183,9 +183,9 @@ namespace HangNoiDiaNhat.Controllers
         }
         [Route("GetAccountById")]
         [HttpGet]
-        public object GetAccountById(Account1 Account1)
+        public object GetAccountById(int AccountID)
         {
-            var getAccountByID = db.Accounts.Where(x => x.AccountID == Account1.AccountID).ToList();
+            var getAccountByID = db.Accounts.Where(x => x.AccountID == AccountID).ToList();
             var result = (from acc in getAccountByID
                           select new
                           {

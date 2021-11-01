@@ -22,9 +22,9 @@ namespace HangNoiDiaNhat.Controllers
         }
         [Route("GetFieldById")]
         [HttpGet]
-        public object GetFieldById(Field1 Field1)
+        public object GetFieldById(int FieldID)
         {
-            var result = db.Fields.Where(x => x.FieldID == Field1.FieldID).FirstOrDefault();
+            var result = db.Fields.Where(x => x.FieldID == FieldID).FirstOrDefault();
             return result;
         }
 
@@ -107,9 +107,9 @@ namespace HangNoiDiaNhat.Controllers
         }
         [Route("GetPostBySlug")]
         [HttpGet]
-        public object GetPostBySlug(Post1 Post1)
+        public object GetPostBySlug(string Slug)
         {
-            var getPostBySlug = db.Posts.Where(x => x.Slug == Post1.Slug).ToList();
+            var getPostBySlug = db.Posts.Where(x => x.Slug == Slug).ToList();
             var result = (from Posts in getPostBySlug
                           select new
                           {

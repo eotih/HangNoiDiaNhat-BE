@@ -22,9 +22,9 @@ namespace HangNoiDiaNhat.Controllers
         }
         [Route("GetStateById")]
         [HttpGet]
-        public object GetStateById(State1 state)
+        public object GetStateById(int StateID)
         {
-            var result = db.States.Where(x => x.StateID == state.StateID).FirstOrDefault();
+            var result = db.States.Where(x => x.StateID == StateID).FirstOrDefault();
             return result;
         }
 
@@ -91,9 +91,9 @@ namespace HangNoiDiaNhat.Controllers
         }
         [Route("GetPaymentById")]
         [HttpGet]
-        public object GetPaymentById(Payment1 payment1)
+        public object GetPaymentById(int PaymentID)
         {
-            var result = db.Payments.Where(x => x.PaymentID == payment1.PaymentID).FirstOrDefault();
+            var result = db.Payments.Where(x => x.PaymentID == PaymentID).FirstOrDefault();
             return result;
         }
 
@@ -160,9 +160,9 @@ namespace HangNoiDiaNhat.Controllers
         }
         [Route("GetRoleById")]
         [HttpGet]
-        public object GetRoleById(Role1 role1)
+        public object GetRoleById(int RoleID)
         {
-            var result = db.Roles.Where(x => x.RoleID == role1.RoleID).FirstOrDefault();
+            var result = db.Roles.Where(x => x.RoleID == RoleID).FirstOrDefault();
             return result;
         }
 
@@ -229,9 +229,9 @@ namespace HangNoiDiaNhat.Controllers
         }
         [Route("GetCategoryById")]
         [HttpGet]
-        public object GetCategoryById(Category1 cate)
+        public object GetCategoryById(int CategoryID)
         {
-            var result = db.Categories.Where(x => x.CategoryID == cate.CategoryID).FirstOrDefault();
+            var result = db.Categories.Where(x => x.CategoryID == CategoryID).FirstOrDefault();
             return result;
         }
 
@@ -302,9 +302,9 @@ namespace HangNoiDiaNhat.Controllers
         }
         [Route("GetBrandById")]
         [HttpGet]
-        public object GetBrandById(Brand1 brand1)
+        public object GetBrandById(int BrandID)
         {
-            var result = db.Brands.Where(x => x.BrandID == brand1.BrandID).FirstOrDefault();
+            var result = db.Brands.Where(x => x.BrandID == BrandID).FirstOrDefault();
             return result;
         }
 
@@ -376,9 +376,9 @@ namespace HangNoiDiaNhat.Controllers
         }
         [Route("GetUtilById")]
         [HttpGet]
-        public object GetUtilById(Util Util)
+        public object GetUtilById(int UtilityID)
         {
-            var result = db.Utilities.Where(x => x.UtilityID == Util.UtilityID).FirstOrDefault();
+            var result = db.Utilities.Where(x => x.UtilityID == UtilityID).FirstOrDefault();
             return result;
         }
 
@@ -437,74 +437,6 @@ namespace HangNoiDiaNhat.Controllers
                 Message = "Delete Successfuly"
             };
         }
-        //---------------------------- Service Zone ----------------------------//
-        [Route("SelectAllService")]
-        [HttpGet]
-        public object SelectAllService()
-        {
-            var result = db.Services.ToList();
-            return result;
-        }
-        [Route("GetServiceById")]
-        [HttpGet]
-        public object GetServiceById(Service1 Service1)
-        {
-            var result = db.Services.Where(x => x.ServiceID == Service1.ServiceID).FirstOrDefault();
-            return result;
-        }
-
-        [Route("AddOrEditService")]
-        [HttpPost]
-        public object AddOrEditService(Service1 Service1)
-        {
-            if (Service1.ServiceID == 0)
-            {
-                Service service = new Service
-                {
-                    Name = Service1.Name,
-                    CreatedAt = DateTime.Now
-                };
-                db.Services.Add(service);
-                db.SaveChanges();
-                return new Response
-                {
-                    Status = "Success",
-                    Message = "Data Success"
-                };
-            }
-            else
-            {
-                var obj = db.Services.Where(x => x.ServiceID == Service1.ServiceID).FirstOrDefault();
-                if (obj.ServiceID > 0)
-                {
-                    obj.Name = Service1.Name;
-                    obj.UpdatedAt = DateTime.Now;
-                    db.SaveChanges();
-                    return new Response
-                    {
-                        Status = "Updated",
-                        Message = "Updated Successfully"
-                    };
-                }
-            }
-            return new Response
-            {
-                Status = "Error",
-                Message = "Data not insert"
-            };
-        }
-        [Route("DeleteService")]
-        [HttpDelete]
-        public object DeleteService(int ServiceID)
-        {
-            var obj = db.Services.Where(x => x.ServiceID == ServiceID).FirstOrDefault();
-            db.Services.Remove(obj);
-            db.SaveChanges();
-            return new Response
-            {
-                Status = "Delete",
-                Message = "Delete Successfuly"
-            };
-        }
+        
     }
 }
