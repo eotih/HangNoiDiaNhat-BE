@@ -40,20 +40,14 @@ namespace HangNoiDiaNhat.Models
         }
 
         private static string Secret = "ERMN05OPLoDvbTTa/QkqLNMI7cPLguaRyHzyg7n5qNBVjQmtBhz4SzYh4NBVCXi3KJHlSXKP+oi2+bXr6CUYTR==";
-        public static string GenerateToken(string RoleName, string Fullname, string Password, string Phone, string Address, string Email, int IdUser)
+        public static string GenerateToken(int AccountID)
         {
             byte[] key = Convert.FromBase64String(Secret);
             SymmetricSecurityKey securityKey = new SymmetricSecurityKey(key);
             SecurityTokenDescriptor descriptor = new SecurityTokenDescriptor
             {
                 Subject = new ClaimsIdentity(new[] {
-                      new Claim(ClaimTypes.NameIdentifier, IdUser.ToString()),
-                      new Claim(ClaimTypes.NameIdentifier, Fullname),
-                      new Claim(ClaimTypes.NameIdentifier, Phone),
-                      new Claim(ClaimTypes.NameIdentifier, Email),
-                      new Claim(ClaimTypes.NameIdentifier, Password),
-                      new Claim(ClaimTypes.NameIdentifier, Address),
-                      new Claim(ClaimTypes.NameIdentifier, RoleName),
+                      new Claim(ClaimTypes.NameIdentifier, AccountID.ToString()),
 
                   }),
                 Expires = DateTime.UtcNow.AddMinutes(240),

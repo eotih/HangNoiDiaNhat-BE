@@ -162,24 +162,30 @@ namespace HangNoiDiaNhat.Controllers
         }
 
         //---------------------------- Banner Zone ----------------------------//
+        [Route("Login")]
+        [HttpPost]
+        public Response Login(Login lg)
+        {
+            if (ModelState.IsValid)
+            {
+                var f_password = Utilities.GetMD5(lg.Password);
+                var user = db.Accounts.Where(s => s.Email.Equals(lg.Email) && s.Password.Equals(f_password)).FirstOrDefault();
+                if (user != null)
+                {
+                    return new Response() { Status = "Success", Message = Utilities.GenerateToken(user.AccountID) };
+                }
+            }
+            else
+            {
+                return new Response { Status = "Fail", Message = "Login Fail" };
+            }
+            return new Response { Status = "Sai", Message = "Sai" };
+        }
         [Route("SelectAllAccount")]
         [HttpGet]
         public object SelectAllAccount()
         {
-            var result = (from acc in db.Accounts
-                         select new
-                         {
-                             acc.AccountID,
-                             acc.FullName,
-                             acc.Phone,
-                             acc.Email,
-                             acc.Password,
-                             acc.Address,
-                             acc.Image,
-                             acc.CreatedAt,
-                             acc.UpdatedAt,
-                             Role = db.Roles.Where(x => x.RoleID == acc.RoleID).FirstOrDefault(),
-                         }).ToList();
+            var result = db.Accounts.ToList();
             return result;
         }
         [Route("GetAccountById")]
@@ -204,7 +210,7 @@ namespace HangNoiDiaNhat.Controllers
             return result;
         }
 
-        [Route("AddOrEditBanner")]
+        [Route("AddOrEditAccount")]
         [HttpPost]
         public object AddOrEditAccount(Account1 Account1)
         {
