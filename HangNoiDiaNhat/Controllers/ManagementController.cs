@@ -119,7 +119,7 @@ namespace HangNoiDiaNhat.Controllers
                     Phone = Customer1.Phone,
                     Email = Customer1.Email,
                     Address = Customer1.Address,
-                    Password = Customer1.Password,
+                    Password = Utilities.GetMD5(Customer1.Password),
                     CreatedAt = DateTime.Now
                 };
                 db.Customers.Add(Customer);
@@ -139,7 +139,7 @@ namespace HangNoiDiaNhat.Controllers
                     obj.Phone = Customer1.Phone;
                     obj.Email = Customer1.Email;
                     obj.Address = Customer1.Address;
-                    obj.Password = Customer1.Password;
+                    obj.Password = Utilities.GetMD5(Customer1.Password);
                     obj.UpdatedAt = DateTime.Now;
                     db.SaveChanges();
                     return new Response
@@ -193,6 +193,7 @@ namespace HangNoiDiaNhat.Controllers
                 Image img = new Image
                 {
                     ProductID = img1.ProductID,
+                    ProductName = img1.ProductName,
                     Image1 = img1.Image2,
                     CreatedAt = DateTime.Now
                 };
@@ -210,6 +211,7 @@ namespace HangNoiDiaNhat.Controllers
                 if (obj.ImageID > 0)
                 {
                     obj.ProductID = img1.ProductID;
+                    obj.ProductName = img1.ProductName;
                     obj.Image1 = img1.Image2;
                     obj.UpdatedAt = DateTime.Now;
                     db.SaveChanges();

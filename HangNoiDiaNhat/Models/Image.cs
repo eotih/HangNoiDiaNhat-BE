@@ -16,6 +16,7 @@ namespace HangNoiDiaNhat.Models
     {
         public int ImageID { get; set; }
         public Nullable<int> ProductID { get; set; }
+        public string ProductName { get; set; }
         public string Image1 { get; set; }
         public Nullable<System.DateTime> CreatedAt { get; set; }
         public Nullable<System.DateTime> UpdatedAt { get; set; }

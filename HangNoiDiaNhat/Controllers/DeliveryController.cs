@@ -106,6 +106,7 @@ namespace HangNoiDiaNhat.Controllers
                 IdentityCard identity = new IdentityCard
                 {
                     FrontFigure = IdentityCard1.FrontFigure,
+                    ShipperName = IdentityCard1.ShipperName,
                     BackSideFigure = IdentityCard1.BackSideFigure,
                     CreatedAt = DateTime.Now
                 };
@@ -123,6 +124,7 @@ namespace HangNoiDiaNhat.Controllers
                 if (obj.IdentityCardID > 0)
                 {
                     obj.FrontFigure = IdentityCard1.FrontFigure;
+                    obj.ShipperName = IdentityCard1.ShipperName;
                     obj.BackSideFigure = IdentityCard1.BackSideFigure;
                     obj.UpdatedAt = DateTime.Now;
                     db.SaveChanges();

@@ -95,6 +95,7 @@
             <PropertyRef Name="IdentityCardID" />
           </Key>
           <Property Name="IdentityCardID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="ShipperName" Type="nvarchar(max)" />
           <Property Name="FrontFigure" Type="nvarchar(max)" />
           <Property Name="BackSideFigure" Type="nvarchar(max)" />
           <Property Name="CreatedAt" Type="datetime" />
@@ -106,6 +107,7 @@
           </Key>
           <Property Name="ImageID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
           <Property Name="ProductID" Type="int" />
+          <Property Name="ProductName" Type="nvarchar(max)" />
           <Property Name="Image" Type="nvarchar(max)" />
           <Property Name="CreatedAt" Type="datetime" />
           <Property Name="UpdatedAt" Type="datetime" />
@@ -409,6 +411,7 @@
             <PropertyRef Name="IdentityCardID" />
           </Key>
           <Property Name="IdentityCardID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="ShipperName" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
           <Property Name="FrontFigure" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
           <Property Name="BackSideFigure" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
           <Property Name="CreatedAt" Type="DateTime" Precision="3" />
@@ -420,6 +423,7 @@
           </Key>
           <Property Name="ImageID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
           <Property Name="ProductID" Type="Int32" />
+          <Property Name="ProductName" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
           <Property Name="Image1" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
           <Property Name="CreatedAt" Type="DateTime" Precision="3" />
           <Property Name="UpdatedAt" Type="DateTime" Precision="3" />
@@ -730,6 +734,7 @@
             <EntityTypeMapping TypeName="HangNoiDiaNhatModel.IdentityCard">
               <MappingFragment StoreEntitySet="IdentityCards">
                 <ScalarProperty Name="IdentityCardID" ColumnName="IdentityCardID" />
+                <ScalarProperty Name="ShipperName" ColumnName="ShipperName" />
                 <ScalarProperty Name="FrontFigure" ColumnName="FrontFigure" />
                 <ScalarProperty Name="BackSideFigure" ColumnName="BackSideFigure" />
                 <ScalarProperty Name="CreatedAt" ColumnName="CreatedAt" />
@@ -742,6 +747,7 @@
               <MappingFragment StoreEntitySet="Images">
                 <ScalarProperty Name="ImageID" ColumnName="ImageID" />
                 <ScalarProperty Name="ProductID" ColumnName="ProductID" />
+                <ScalarProperty Name="ProductName" ColumnName="ProductName" />
                 <ScalarProperty Name="Image1" ColumnName="Image" />
                 <ScalarProperty Name="CreatedAt" ColumnName="CreatedAt" />
                 <ScalarProperty Name="UpdatedAt" ColumnName="UpdatedAt" />

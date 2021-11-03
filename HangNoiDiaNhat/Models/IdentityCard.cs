@@ -15,6 +15,7 @@ namespace HangNoiDiaNhat.Models
     public partial class IdentityCard
     {
         public int IdentityCardID { get; set; }
+        public string ShipperName { get; set; }
         public string FrontFigure { get; set; }
         public string BackSideFigure { get; set; }
         public Nullable<System.DateTime> CreatedAt { get; set; }
