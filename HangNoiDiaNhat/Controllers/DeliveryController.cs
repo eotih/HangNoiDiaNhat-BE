@@ -81,79 +81,7 @@ namespace HangNoiDiaNhat.Controllers
                 Message = "Delete Successfuly"
             };
         }
-        //---------------------------- IdentityCard Zone ----------------------------//
-        [Route("SelectAllIdentityCard")]
-        [HttpGet]
-        public object SelectAllIdentityCard()
-        {
-            var result = db.IdentityCards.ToList();
-            return result;
-        }
-        [Route("GetIdentityCardById")]
-        [HttpGet]
-        public object GetIdentityCardById(int IdentityCardID)
-        {
-            var result = db.IdentityCards.Where(x => x.IdentityCardID == IdentityCardID).FirstOrDefault();
-            return result;
-        }
-
-        [Route("AddOrEditIdentityCard")]
-        [HttpPost]
-        public object AddOrEditIdentityCard(IdentityCard1 IdentityCard1)
-        {
-            if (IdentityCard1.IdentityCardID == 0)
-            {
-                IdentityCard identity = new IdentityCard
-                {
-                    FrontFigure = IdentityCard1.FrontFigure,
-                    ShipperName = IdentityCard1.ShipperName,
-                    BackSideFigure = IdentityCard1.BackSideFigure,
-                    CreatedAt = DateTime.Now
-                };
-                db.IdentityCards.Add(identity);
-                db.SaveChanges();
-                return new Response
-                {
-                    Status = "Success",
-                    Message = "Data Success"
-                };
-            }
-            else
-            {
-                var obj = db.IdentityCards.Where(x => x.IdentityCardID == IdentityCard1.IdentityCardID).FirstOrDefault();
-                if (obj.IdentityCardID > 0)
-                {
-                    obj.FrontFigure = IdentityCard1.FrontFigure;
-                    obj.ShipperName = IdentityCard1.ShipperName;
-                    obj.BackSideFigure = IdentityCard1.BackSideFigure;
-                    obj.UpdatedAt = DateTime.Now;
-                    db.SaveChanges();
-                    return new Response
-                    {
-                        Status = "Updated",
-                        Message = "Updated Successfully"
-                    };
-                }
-            }
-            return new Response
-            {
-                Status = "Error",
-                Message = "Data not insert"
-            };
-        }
-        [Route("DeleteIdentityCard")]
-        [HttpDelete]
-        public object DeleteIdentityCard(int IdentityCardID)
-        {
-            var obj = db.IdentityCards.Where(x => x.IdentityCardID == IdentityCardID).FirstOrDefault();
-            db.IdentityCards.Remove(obj);
-            db.SaveChanges();
-            return new Response
-            {
-                Status = "Deleted",
-                Message = "Delete Successfuly"
-            };
-        }
+       
         //---------------------------- ShippingDepartment Zone ----------------------------//
         [Route("SelectAllShippingDepartment")]
         [HttpGet]
@@ -355,39 +283,14 @@ namespace HangNoiDiaNhat.Controllers
         [HttpGet]
         public object SelectAllShipper()
         {
-            var result = (from shipper in db.Shippers
-                          select new
-                          {
-                              shipper.ShipperID,
-                              shipper.FullName,
-                              shipper.Phone,
-                              shipper.Email,
-                              shipper.Password,
-                              shipper.Address,
-                              shipper.CreatedAt,
-                              shipper.UpdatedAt,
-                              CCCD = db.Shippers.Where(x=>x.ShipperID == shipper.ShipperID).ToList()
-                          }).ToList();
+            var result = db.Shippers.ToList();
             return result;
         }
         [Route("GetShipperById")]
         [HttpGet]
         public object GetShipperById(int ShipperID)
         {
-            var getShipperById = db.Shippers.Where(x => x.ShipperID == ShipperID).ToList();
-            var result = (from shipper in getShipperById
-                          select new
-                          {
-                              shipper.ShipperID,
-                              shipper.FullName,
-                              shipper.Phone,
-                              shipper.Email,
-                              shipper.Password,
-                              shipper.Address,
-                              shipper.CreatedAt,
-                              shipper.UpdatedAt,
-                              CCCD = db.Shippers.Where(x => x.ShipperID == shipper.ShipperID).ToList()
-                          }).ToList();
+            var result = db.Shippers.Where(x => x.ShipperID == ShipperID).ToList();
             return result;
         }
 
@@ -402,6 +305,8 @@ namespace HangNoiDiaNhat.Controllers
                     FullName = Shipper1.FullName,
                     IdentityID = Shipper1.IdentityID,
                     Phone = Shipper1.Phone,
+                    FrontFigure = Shipper1.FrontFigure,
+                    BackSideFigure = Shipper1.BackSideFigure,
                     Email = Shipper1.Email,
                     Password = Shipper1.Password,
                     Address = Shipper1.Address,
@@ -424,6 +329,8 @@ namespace HangNoiDiaNhat.Controllers
                     obj.IdentityID = Shipper1.IdentityID;
                     obj.Phone = Shipper1.Phone;
                     obj.Email = Shipper1.Email;
+                    obj.FrontFigure = Shipper1.FrontFigure;
+                    obj.BackSideFigure = Shipper1.BackSideFigure;
                     obj.Password = Shipper1.Password;
                     obj.Address = Shipper1.Address;
                     obj.UpdatedAt = DateTime.Now;

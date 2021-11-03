@@ -236,7 +236,6 @@
     <Compile Include="Models\IdentityCard.cs">
       <DependentUpon>HangNoiDiaNhat.tt</DependentUpon>
     </Compile>
-    <Compile Include="Models\IdentityCard1.cs" />
     <Compile Include="Models\Image.cs">
       <DependentUpon>HangNoiDiaNhat.tt</DependentUpon>
     </Compile>

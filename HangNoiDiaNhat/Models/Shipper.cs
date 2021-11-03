@@ -21,6 +21,8 @@ namespace HangNoiDiaNhat.Models
         public string Email { get; set; }
         public string Password { get; set; }
         public string Address { get; set; }
+        public string FrontFigure { get; set; }
+        public string BackSideFigure { get; set; }
         public Nullable<System.DateTime> CreatedAt { get; set; }
         public Nullable<System.DateTime> UpdatedAt { get; set; }
     }

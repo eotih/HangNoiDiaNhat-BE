@@ -238,6 +238,8 @@
           <Property Name="Email" Type="nvarchar" MaxLength="50" />
           <Property Name="Password" Type="nvarchar" MaxLength="100" />
           <Property Name="Address" Type="nvarchar(max)" />
+          <Property Name="FrontFigure" Type="nvarchar(max)" />
+          <Property Name="BackSideFigure" Type="nvarchar(max)" />
           <Property Name="CreatedAt" Type="datetime" />
           <Property Name="UpdatedAt" Type="datetime" />
         </EntityType>
@@ -554,6 +556,8 @@
           <Property Name="Email" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
           <Property Name="Password" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
           <Property Name="Address" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="FrontFigure" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="BackSideFigure" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
           <Property Name="CreatedAt" Type="DateTime" Precision="3" />
           <Property Name="UpdatedAt" Type="DateTime" Precision="3" />
         </EntityType>
@@ -888,6 +892,8 @@
                 <ScalarProperty Name="Email" ColumnName="Email" />
                 <ScalarProperty Name="Password" ColumnName="Password" />
                 <ScalarProperty Name="Address" ColumnName="Address" />
+                <ScalarProperty Name="FrontFigure" ColumnName="FrontFigure" />
+                <ScalarProperty Name="BackSideFigure" ColumnName="BackSideFigure" />
                 <ScalarProperty Name="CreatedAt" ColumnName="CreatedAt" />
                 <ScalarProperty Name="UpdatedAt" ColumnName="UpdatedAt" />
               </MappingFragment>
