@@ -12,6 +12,85 @@ namespace HangNoiDiaNhat.Controllers
     public class ManagementController : ApiController
     {
         HangNoiDiaNhatEntities db = new HangNoiDiaNhatEntities();
+        [Route("SelectAllContact")]
+        [HttpGet]
+        public object SelectAllContact()
+        {
+            var result = db.Contacts.ToList();
+            return result;
+        }
+        [Route("GetContactById")]
+        [HttpGet]
+        public object GetContactById(int ContactID)
+        {
+            var result = db.Contacts.Where(x => x.ContactID == ContactID).FirstOrDefault();
+            return result;
+        }
+
+        [Route("AddOrEditContact")]
+        [HttpPost]
+        public object AddOrEditContact(Contact1 Contact1)
+        {
+            if (Contact1.ContactID == 0)
+            {
+                Contact Contact = new Contact
+                {
+                    FullName = Contact1.FullName,
+                    Phone = Contact1.Phone,
+                    Email = Contact1.Email,
+                    Address = Contact1.Address,
+                    Subtitle = Contact1.Subtitle,
+                    Details = Contact1.Details,
+                    CreatedAt = DateTime.Now
+                };
+                db.Contacts.Add(Contact);
+                db.SaveChanges();
+                return new Response
+                {
+                    Status = "Success",
+                    Message = "Data Success"
+                };
+            }
+            else
+            {
+                var obj = db.Contacts.Where(x => x.ContactID == Contact1.ContactID).FirstOrDefault();
+                if (obj.ContactID > 0)
+                {
+                    obj.FullName = Contact1.FullName;
+                    obj.Phone = Contact1.Phone;
+                    obj.Email = Contact1.Email;
+                    obj.Address = Contact1.Address;
+                    obj.Details = Contact1.Details;
+                    obj.Subtitle = Contact1.Subtitle;
+                    obj.UpdatedAt = DateTime.Now;
+                    db.SaveChanges();
+                    return new Response
+                    {
+                        Status = "Updated",
+                        Message = "Updated Successfully"
+                    };
+                }
+            }
+            return new Response
+            {
+                Status = "Error",
+                Message = "Data not insert"
+            };
+        }
+        [Route("DeleteContact")]
+        [HttpDelete]
+        public object DeleteContact(int ContactID)
+        {
+            var obj = db.Contacts.Where(x => x.ContactID == ContactID).FirstOrDefault();
+            db.Contacts.Remove(obj);
+            db.SaveChanges();
+            return new Response
+            {
+                Status = "Deleted",
+                Message = "Delete Successfuly"
+            };
+        }
+
         //---------------------------- Customer Zone ----------------------------//
         [Route("SelectAllCustomer")]
         [HttpGet]
@@ -85,7 +164,7 @@ namespace HangNoiDiaNhat.Controllers
             db.SaveChanges();
             return new Response
             {
-                Status = "Delete",
+                Status = "Deleted",
                 Message = "Delete Successfuly"
             };
         }
@@ -156,7 +235,7 @@ namespace HangNoiDiaNhat.Controllers
             db.SaveChanges();
             return new Response
             {
-                Status = "Delete",
+                Status = "Deleted",
                 Message = "Delete Successfuly"
             };
         }
@@ -290,7 +369,7 @@ namespace HangNoiDiaNhat.Controllers
             db.SaveChanges();
             return new Response
             {
-                Status = "Delete",
+                Status = "Deleted",
                 Message = "Delete Successfuly"
             };
         }
@@ -361,7 +440,7 @@ namespace HangNoiDiaNhat.Controllers
             db.SaveChanges();
             return new Response
             {
-                Status = "Delete",
+                Status = "Deleted",
                 Message = "Delete Successfuly"
             };
         }
@@ -471,7 +550,7 @@ namespace HangNoiDiaNhat.Controllers
             db.SaveChanges();
             return new Response
             {
-                Status = "Delete",
+                Status = "Deleted",
                 Message = "Delete Successfuly"
             };
         }
@@ -573,7 +652,7 @@ namespace HangNoiDiaNhat.Controllers
             db.SaveChanges();
             return new Response
             {
-                Status = "Delete",
+                Status = "Deleted",
                 Message = "Delete Successfuly"
             };
         }

@@ -39,7 +39,6 @@ namespace HangNoiDiaNhat.Controllers
                     FullName = Organization1.FullName,
                     Phone = Organization1.Phone,
                     Email = Organization1.Email,
-                    Password = Utilities.GetMD5(Organization1.Password),
                     Address = Organization1.Address,
                     CreatedAt = DateTime.Now
                 };
@@ -59,7 +58,6 @@ namespace HangNoiDiaNhat.Controllers
                     obj.FullName = Organization1.FullName;
                     obj.Phone = Organization1.Phone;
                     obj.Email = Organization1.Email;
-                    obj.Password = Utilities.GetMD5(Organization1.Password);
                     obj.Address = Organization1.Address;
                     obj.UpdatedAt = DateTime.Now;
                     db.SaveChanges();
@@ -85,7 +83,7 @@ namespace HangNoiDiaNhat.Controllers
             db.SaveChanges();
             return new Response
             {
-                Status = "Delete",
+                Status = "Deleted",
                 Message = "Delete Successfuly"
             };
         }
@@ -156,7 +154,7 @@ namespace HangNoiDiaNhat.Controllers
             db.SaveChanges();
             return new Response
             {
-                Status = "Delete",
+                Status = "Deleted",
                 Message = "Delete Successfuly"
             };
         }
@@ -271,7 +269,7 @@ namespace HangNoiDiaNhat.Controllers
             db.SaveChanges();
             return new Response
             {
-                Status = "Delete",
+                Status = "Deleted",
                 Message = "Delete Successfuly"
             };
         }

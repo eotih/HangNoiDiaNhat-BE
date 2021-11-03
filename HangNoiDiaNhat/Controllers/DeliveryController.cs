@@ -77,7 +77,7 @@ namespace HangNoiDiaNhat.Controllers
             db.SaveChanges();
             return new Response
             {
-                Status = "Delete",
+                Status = "Deleted",
                 Message = "Delete Successfuly"
             };
         }
@@ -148,7 +148,7 @@ namespace HangNoiDiaNhat.Controllers
             db.SaveChanges();
             return new Response
             {
-                Status = "Delete",
+                Status = "Deleted",
                 Message = "Delete Successfuly"
             };
         }
@@ -222,7 +222,7 @@ namespace HangNoiDiaNhat.Controllers
             db.SaveChanges();
             return new Response
             {
-                Status = "Delete",
+                Status = "Deleted",
                 Message = "Delete Successfuly"
             };
         }
@@ -344,7 +344,7 @@ namespace HangNoiDiaNhat.Controllers
             db.SaveChanges();
             return new Response
             {
-                Status = "Delete",
+                Status = "Deleted",
                 Message = "Delete Successfuly"
             };
         }
