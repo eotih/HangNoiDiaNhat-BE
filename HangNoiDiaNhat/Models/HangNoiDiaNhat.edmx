@@ -90,17 +90,6 @@
           <Property Name="CreatedAt" Type="datetime" />
           <Property Name="UpdatedAt" Type="datetime" />
         </EntityType>
-        <EntityType Name="IdentityCards">
-          <Key>
-            <PropertyRef Name="IdentityCardID" />
-          </Key>
-          <Property Name="IdentityCardID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
-          <Property Name="ShipperName" Type="nvarchar(max)" />
-          <Property Name="FrontFigure" Type="nvarchar(max)" />
-          <Property Name="BackSideFigure" Type="nvarchar(max)" />
-          <Property Name="CreatedAt" Type="datetime" />
-          <Property Name="UpdatedAt" Type="datetime" />
-        </EntityType>
         <EntityType Name="Images">
           <Key>
             <PropertyRef Name="ImageID" />
@@ -232,7 +221,6 @@
             <PropertyRef Name="ShipperID" />
           </Key>
           <Property Name="ShipperID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
-          <Property Name="IdentityID" Type="int" />
           <Property Name="FullName" Type="nvarchar(max)" />
           <Property Name="Phone" Type="nvarchar" MaxLength="20" />
           <Property Name="Email" Type="nvarchar" MaxLength="50" />
@@ -301,7 +289,6 @@
           <EntitySet Name="Contacts" EntityType="Self.Contacts" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Customers" EntityType="Self.Customers" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Fields" EntityType="Self.Fields" Schema="dbo" store:Type="Tables" />
-          <EntitySet Name="IdentityCards" EntityType="Self.IdentityCards" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Images" EntityType="Self.Images" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="OrderDetails" EntityType="Self.OrderDetails" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Orders" EntityType="Self.Orders" Schema="dbo" store:Type="Tables" />
@@ -405,17 +392,6 @@
           <Property Name="Name" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
           <Property Name="Slug" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
           <Property Name="Thumbnail" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
-          <Property Name="CreatedAt" Type="DateTime" Precision="3" />
-          <Property Name="UpdatedAt" Type="DateTime" Precision="3" />
-        </EntityType>
-        <EntityType Name="IdentityCard">
-          <Key>
-            <PropertyRef Name="IdentityCardID" />
-          </Key>
-          <Property Name="IdentityCardID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-          <Property Name="ShipperName" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
-          <Property Name="FrontFigure" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
-          <Property Name="BackSideFigure" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
           <Property Name="CreatedAt" Type="DateTime" Precision="3" />
           <Property Name="UpdatedAt" Type="DateTime" Precision="3" />
         </EntityType>
@@ -550,7 +526,6 @@
             <PropertyRef Name="ShipperID" />
           </Key>
           <Property Name="ShipperID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-          <Property Name="IdentityID" Type="Int32" />
           <Property Name="FullName" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
           <Property Name="Phone" Type="String" MaxLength="20" FixedLength="false" Unicode="true" />
           <Property Name="Email" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
@@ -619,7 +594,6 @@
           <EntitySet Name="Contacts" EntityType="Self.Contact" />
           <EntitySet Name="Customers" EntityType="Self.Customer" />
           <EntitySet Name="Fields" EntityType="Self.Field" />
-          <EntitySet Name="IdentityCards" EntityType="Self.IdentityCard" />
           <EntitySet Name="Images" EntityType="Self.Image" />
           <EntitySet Name="OrderDetails" EntityType="Self.OrderDetail" />
           <EntitySet Name="Orders" EntityType="Self.Order" />
@@ -729,18 +703,6 @@
                 <ScalarProperty Name="Name" ColumnName="Name" />
                 <ScalarProperty Name="Slug" ColumnName="Slug" />
                 <ScalarProperty Name="Thumbnail" ColumnName="Thumbnail" />
-                <ScalarProperty Name="CreatedAt" ColumnName="CreatedAt" />
-                <ScalarProperty Name="UpdatedAt" ColumnName="UpdatedAt" />
-              </MappingFragment>
-            </EntityTypeMapping>
-          </EntitySetMapping>
-          <EntitySetMapping Name="IdentityCards">
-            <EntityTypeMapping TypeName="HangNoiDiaNhatModel.IdentityCard">
-              <MappingFragment StoreEntitySet="IdentityCards">
-                <ScalarProperty Name="IdentityCardID" ColumnName="IdentityCardID" />
-                <ScalarProperty Name="ShipperName" ColumnName="ShipperName" />
-                <ScalarProperty Name="FrontFigure" ColumnName="FrontFigure" />
-                <ScalarProperty Name="BackSideFigure" ColumnName="BackSideFigure" />
                 <ScalarProperty Name="CreatedAt" ColumnName="CreatedAt" />
                 <ScalarProperty Name="UpdatedAt" ColumnName="UpdatedAt" />
               </MappingFragment>
@@ -886,7 +848,6 @@
             <EntityTypeMapping TypeName="HangNoiDiaNhatModel.Shipper">
               <MappingFragment StoreEntitySet="Shippers">
                 <ScalarProperty Name="ShipperID" ColumnName="ShipperID" />
-                <ScalarProperty Name="IdentityID" ColumnName="IdentityID" />
                 <ScalarProperty Name="FullName" ColumnName="FullName" />
                 <ScalarProperty Name="Phone" ColumnName="Phone" />
                 <ScalarProperty Name="Email" ColumnName="Email" />

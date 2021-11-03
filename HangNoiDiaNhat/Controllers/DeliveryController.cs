@@ -303,7 +303,6 @@ namespace HangNoiDiaNhat.Controllers
                 Shipper shipper = new Shipper
                 {
                     FullName = Shipper1.FullName,
-                    IdentityID = Shipper1.IdentityID,
                     Phone = Shipper1.Phone,
                     FrontFigure = Shipper1.FrontFigure,
                     BackSideFigure = Shipper1.BackSideFigure,
@@ -326,7 +325,6 @@ namespace HangNoiDiaNhat.Controllers
                 if (obj.ShipperID > 0)
                 {
                     obj.FullName = Shipper1.FullName;
-                    obj.IdentityID = Shipper1.IdentityID;
                     obj.Phone = Shipper1.Phone;
                     obj.Email = Shipper1.Email;
                     obj.FrontFigure = Shipper1.FrontFigure;
@@ -348,16 +346,16 @@ namespace HangNoiDiaNhat.Controllers
                 Message = "Data not insert"
             };
         }
-        [Route("DeletShipper")]
+        [Route("DeleteShipper")]
         [HttpDelete]
-        public object DeletShipper(int ShipperID)
+        public object DeleteShipper(int ShipperID)
         {
             var obj = db.Shippers.Where(x => x.ShipperID == ShipperID).FirstOrDefault();
             db.Shippers.Remove(obj);
             db.SaveChanges();
             return new Response
             {
-                Status = "Delete",
+                Status = "Deleted",
                 Message = "Delete Successfuly"
             };
         }

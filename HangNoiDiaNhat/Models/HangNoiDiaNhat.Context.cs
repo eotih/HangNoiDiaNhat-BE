@@ -32,7 +32,6 @@ namespace HangNoiDiaNhat.Models
         public virtual DbSet<Contact> Contacts { get; set; }
         public virtual DbSet<Customer> Customers { get; set; }
         public virtual DbSet<Field> Fields { get; set; }
-        public virtual DbSet<IdentityCard> IdentityCards { get; set; }
         public virtual DbSet<Image> Images { get; set; }
         public virtual DbSet<OrderDetail> OrderDetails { get; set; }
         public virtual DbSet<Order> Orders { get; set; }

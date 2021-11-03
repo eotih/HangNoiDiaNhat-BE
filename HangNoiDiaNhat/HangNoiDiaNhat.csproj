@@ -233,9 +233,6 @@
       <DesignTime>True</DesignTime>
       <DependentUpon>HangNoiDiaNhat.edmx</DependentUpon>
     </Compile>
-    <Compile Include="Models\IdentityCard.cs">
-      <DependentUpon>HangNoiDiaNhat.tt</DependentUpon>
-    </Compile>
     <Compile Include="Models\Image.cs">
       <DependentUpon>HangNoiDiaNhat.tt</DependentUpon>
     </Compile>
