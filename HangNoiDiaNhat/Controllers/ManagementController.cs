@@ -247,6 +247,11 @@ namespace HangNoiDiaNhat.Controllers
         public object SelectAllProduct()
         {
             var result = (from prd in db.Products
+                          from cate in db.Categories
+                          from acc in db.Accounts
+                          from brand in db.Brands
+                          where cate.CategoryID == prd.CategoryID
+                          where acc.AccountID == prd.AccountID
                           select new
                           {
                               prd.Name,
@@ -260,11 +265,11 @@ namespace HangNoiDiaNhat.Controllers
                               prd.Thumbnail,
                               prd.CreatedAt,
                               prd.UpdatedAt,
-                              TheLoai = db.Categories.Where(x=>x.CategoryID == prd.CategoryID).FirstOrDefault(),
-                              NhanVien = db.Accounts.Where(x=>x.AccountID == prd.AccountID).FirstOrDefault(),
-                              ChucNang = db.ProductDetails.Where(x=>x.ProductDetailID == prd.ProductDetailID).ToList(),
-                              ThuongHieu = db.Brands.Where(x=>x.BrandID == prd.BrandID).FirstOrDefault(),
-                              HinhAnh = db.Images.Where(x=>x.ImageID == prd.ImageID).ToList(),
+                              TheLoai = cate.Name,
+                              NhanVien = acc.FullName,
+                              ThuongHieu = brand.Thumbnail,
+                              ChucNang = db.ProductDetails.Where(x => x.ProductID == prd.ProductID).ToList(),
+                              HinhAnh = db.Images.Where(x => x.ImageID == prd.ImageID).ToList(),
                           }).ToList();
             return result;
         }
@@ -393,7 +398,7 @@ namespace HangNoiDiaNhat.Controllers
 
         [Route("AddOrEditProductDetail")]
         [HttpPost]
-        public object AddOrEditProductDetail (ProductDetail1 ProductDetail1)
+        public object AddOrEditProductDetail(ProductDetail1 ProductDetail1)
         {
             if (ProductDetail1.ProductDetailID == 0)
             {
@@ -455,15 +460,16 @@ namespace HangNoiDiaNhat.Controllers
                           select new
                           {
                               ord.Details,
+                              ord.OrderID,
                               ord.Quantity,
                               ord.TotalPrice,
                               ord.CreatedAt,
                               ord.UpdatedAt,
-                              ChiTietDonHang = db.OrderDetails.Where(x=>x.OrderDetailID == ord.OrderDetailID).ToList(),
-                              NhanVien = db.Accounts.Where(x=>x.AccountID == ord.AccountID).FirstOrDefault(),
-                              TrangThai = db.States.Where(x=>x.StateID == ord.StateID).FirstOrDefault(),
-                              HinhThucThanhToan = db.Payments.Where(x=>x.PaymentID == ord.PaymentID).FirstOrDefault(),
-                              TinhTrangDonHang = db.TrackingOrders.Where(x=>x.TrackingOrderID == ord.TrackingOrderID).FirstOrDefault(),
+                              ChiTietDonHang = db.OrderDetails.Where(x => x.OrderDetailID == ord.OrderDetailID).ToList(),
+                              NhanVien = db.Accounts.Where(x => x.AccountID == ord.AccountID).FirstOrDefault(),
+                              TrangThai = db.States.Where(x => x.StateID == ord.StateID).FirstOrDefault(),
+                              HinhThucThanhToan = db.Payments.Where(x => x.PaymentID == ord.PaymentID).FirstOrDefault(),
+                              TinhTrangDonHang = db.TrackingOrders.Where(x => x.TrackingOrderID == ord.TrackingOrderID).FirstOrDefault(),
                           }).ToList();
             return result;
         }
@@ -487,6 +493,29 @@ namespace HangNoiDiaNhat.Controllers
                               TinhTrangDonHang = db.TrackingOrders.Where(x => x.TrackingOrderID == ord.TrackingOrderID).FirstOrDefault(),
                           }).ToList();
             return result;
+        }
+
+        [Route("EditStateOfOrder")]
+        [HttpPost]
+        public object EditStateOfOrder(Order1 Order1)
+        {
+            var obj = db.Orders.Where(x => x.OrderID == Order1.OrderID).FirstOrDefault();
+            if (obj.OrderID > 0)
+            {
+                obj.StateID = Order1.StateID;
+                obj.UpdatedAt = DateTime.Now;
+                db.SaveChanges();
+                return new Response
+                {
+                    Status = "Updated",
+                    Message = "Updated Successfully"
+                };
+            }
+            return new Response
+            {
+                Status = "Error",
+                Message = "Data not insert"
+            };
         }
 
         [Route("AddOrEditOrder")]
@@ -562,16 +591,25 @@ namespace HangNoiDiaNhat.Controllers
         public object SelectAllOrderDetails()
         {
             var result = (from ord in db.OrderDetails
+                          from sp in db.Products
+                          from kh in db.Customers
+                          from tt in db.States
+                          where ord.ProductID == sp.ProductID
+                          where ord.CustomerID == kh.CustomerID
+                          where ord.StateID == tt.StateID
                           select new
                           {
                               ord.Details,
+                              ord.OrderDetailID,
                               ord.Quantity,
                               ord.CreatedAt,
                               ord.UpdatedAt,
                               ord.OrderID,
-                              SanPham = db.Products.Where(x => x.ProductID == ord.ProductID).FirstOrDefault(),
-                              KhachHang = db.Customers.Where(x => x.CustomerID == ord.CustomerID).FirstOrDefault(),
-                              TrangThai = db.States.Where(x => x.StateID == ord.StateID).FirstOrDefault(),
+                              ord.StateID,
+                              TrangThai = tt.Name,
+                              NameSP = sp.Name,
+                              ThumbnailSP = sp.Thumbnail,
+                              KhachHang = kh.FullName,
                           }).ToList();
             return result;
         }
@@ -594,7 +632,34 @@ namespace HangNoiDiaNhat.Controllers
                           }).ToList();
             return result;
         }
-
+        [Route("GetOrderDetailByOrderID")]
+        [HttpGet]
+        public object GetOrderDetailByOrderID(int OrderID)
+        {
+            var getOrderDetailById = db.OrderDetails.Where(x => x.OrderID == OrderID).ToList();
+            var result = (from ord in getOrderDetailById
+                          from sp in db.Products
+                          from kh in db.Customers
+                          from tt in db.States
+                          where ord.ProductID == sp.ProductID
+                          where ord.CustomerID == kh.CustomerID
+                          where ord.StateID == tt.StateID
+                          select new
+                          {
+                              ord.Details,
+                              ord.OrderDetailID,
+                              ord.Quantity,
+                              ord.CreatedAt,
+                              ord.UpdatedAt,
+                              ord.OrderID,
+                              ord.StateID,
+                              TrangThai = tt.Name,
+                              NameSP = sp.Name,
+                              ThumbnailSP = sp.Thumbnail,
+                              KhachHang = kh.FullName,
+                          }).ToList();
+            return result;
+        }
         [Route("AddOrEditOrderDetails")]
         [HttpPost]
         public object AddOrEditOrderDetails(OrderDetail1 OrderDetail1)
@@ -656,6 +721,48 @@ namespace HangNoiDiaNhat.Controllers
             {
                 Status = "Deleted",
                 Message = "Delete Successfuly"
+            };
+        }
+        // Xóa tất cả OrderDetail khi mà xóa Order
+        [Route("DeleteOrderDetailsByOrderID")]
+        [HttpDelete]
+        public object DeleteOrderDetailsByOrderID(int OrderID)
+        {
+            var obj = db.OrderDetails.Where(x => x.OrderID == OrderID).ToList();
+            for (var i = 0; i < obj.Count; i++)
+            {
+                db.OrderDetails.Remove(obj[i]);
+            }
+            db.SaveChanges();
+            return new Response
+            {
+                Status = "Deleted",
+                Message = "Delete Successfuly"
+            };
+        }
+        [Route("EditStateInOrderDetail")]
+        [HttpPost]
+        public object EditStateInOrderDetail(Order1 Order1)
+        {
+            var obj = db.OrderDetails.Where(x => x.OrderID == Order1.OrderID).ToList();
+            for (var i = 0; i < obj.Count; i++)
+            {
+                if (obj[i].OrderDetailID > 0)
+                {
+                    obj[i].StateID = Order1.StateID;
+                    obj[i].UpdatedAt = DateTime.Now;
+                    return new Response
+                    {
+                        Status = "Updated",
+                        Message = "Updated Successfully"
+                    };
+                }
+            }
+            db.SaveChanges();
+            return new Response
+            {
+                Status = "Error",
+                Message = "Data not insert"
             };
         }
     }
