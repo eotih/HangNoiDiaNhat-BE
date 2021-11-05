@@ -91,6 +91,10 @@ namespace HangNoiDiaNhat.Controllers
         public object SelectAllPost()
         {
             var result = (from Posts in db.Posts
+                          from field in db.Fields
+                          from state in db.States
+                          where field.FieldID == Posts.FieldID
+                          where state.StateID == Posts.StateID
                           select new
                           {
                               Posts.PostID,
@@ -100,8 +104,8 @@ namespace HangNoiDiaNhat.Controllers
                               Posts.Thumbnail,
                               Posts.CreatedAt,
                               Posts.UpdatedAt,
-                              LinhVuc = db.Fields.Where(x => x.FieldID == Posts.FieldID).FirstOrDefault(),
-                              TrangThai = db.States.Where(x => x.StateID == Posts.StateID).FirstOrDefault(),
+                              LinhVuc = field.Name,
+                              TrangThai = state.Name,
                           }).ToList();
             return result;
         }
@@ -135,7 +139,7 @@ namespace HangNoiDiaNhat.Controllers
                 Post post = new Post
                 {
                     FieldID = Post1.FieldID,
-                    StateID = Post1.StateID,
+                    StateID = 1,
                     Title = Post1.Title,
                     Details = Post1.Details,
                     Thumbnail = Post1.Thumbnail,

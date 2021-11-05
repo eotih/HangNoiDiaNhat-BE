@@ -255,6 +255,7 @@ namespace HangNoiDiaNhat.Controllers
                           select new
                           {
                               prd.Name,
+                              prd.ProductID,
                               prd.Slug,
                               prd.Details,
                               prd.Quantity,
