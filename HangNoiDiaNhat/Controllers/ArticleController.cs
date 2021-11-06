@@ -126,7 +126,7 @@ namespace HangNoiDiaNhat.Controllers
                               Posts.UpdatedAt,
                               LinhVuc = db.Fields.Where(x => x.FieldID == Posts.FieldID).FirstOrDefault(),
                               TrangThai = db.States.Where(x => x.StateID == Posts.StateID).FirstOrDefault(),
-                          }).ToList();
+                          }).FirstOrDefault();
             return result;
         }
 
@@ -157,10 +157,9 @@ namespace HangNoiDiaNhat.Controllers
             else
             {
                 var obj = db.Posts.Where(x => x.PostID == Post1.PostID).FirstOrDefault();
-                if (obj.FieldID > 0)
+                if (obj.PostID > 0)
                 {
                     obj.FieldID = Post1.FieldID;
-                    obj.StateID = Post1.StateID;
                     obj.Title = Post1.Title;
                     obj.Details = Post1.Details;
                     obj.Thumbnail = Post1.Thumbnail;
@@ -173,6 +172,28 @@ namespace HangNoiDiaNhat.Controllers
                         Message = "Updated Successfully"
                     };
                 }
+            }
+            return new Response
+            {
+                Status = "Error",
+                Message = "Data not insert"
+            };
+        }
+        [Route("EditStateOfPost")]
+        [HttpPost]
+        public object EditStateOfPost(Post1 Post1)
+        {
+            var obj = db.Posts.Where(x => x.PostID == Post1.PostID).FirstOrDefault();
+            if (obj.PostID > 0)
+            {
+                obj.StateID = Post1.StateID;
+                obj.UpdatedAt = DateTime.Now;
+                db.SaveChanges();
+                return new Response
+                {
+                    Status = "Updated",
+                    Message = "Updated Successfully"
+                };
             }
             return new Response
             {

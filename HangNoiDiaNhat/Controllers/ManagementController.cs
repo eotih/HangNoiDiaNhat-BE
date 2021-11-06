@@ -250,6 +250,7 @@ namespace HangNoiDiaNhat.Controllers
                           from cate in db.Categories
                           from acc in db.Accounts
                           from brand in db.Brands
+                          where brand.BrandID == prd.BrandID
                           where cate.CategoryID == prd.CategoryID
                           where acc.AccountID == prd.AccountID
                           select new
@@ -274,12 +275,18 @@ namespace HangNoiDiaNhat.Controllers
                           }).ToList();
             return result;
         }
-        [Route("GetProductById")]
+        [Route("GetProductBySlug")]
         [HttpGet]
-        public object GetProductById(int ProductID)
+        public object GetProductBySlug(string Slug)
         {
-            var getProductById = db.Products.Where(x => x.ProductID == ProductID).ToList();
-            var result = (from prd in getProductById
+            var getProductBySlug = db.Products.Where(x => x.Slug == Slug).ToList();
+            var result = (from prd in getProductBySlug
+                          from cate in db.Categories
+                          from nv in db.Accounts
+                          from br in db.Brands
+                          where br.BrandID == prd.BrandID
+                          where nv.AccountID == prd.AccountID
+                          where cate.CategoryID == prd.CategoryID
                           select new
                           {
                               prd.Name,
@@ -293,15 +300,21 @@ namespace HangNoiDiaNhat.Controllers
                               prd.Thumbnail,
                               prd.CreatedAt,
                               prd.UpdatedAt,
-                              TheLoai = db.Categories.Where(x => x.CategoryID == prd.CategoryID).FirstOrDefault(),
-                              NhanVien = db.Accounts.Where(x => x.AccountID == prd.AccountID).FirstOrDefault(),
+                              TheLoai = cate.Name,
+                              NhanVien = nv.FullName,
+                              ThuongHieu = br.Thumbnail,
                               ChucNang = db.ProductDetails.Where(x => x.ProductDetailID == prd.ProductDetailID).ToList(),
-                              ThuongHieu = db.Brands.Where(x => x.BrandID == prd.BrandID).FirstOrDefault(),
                               HinhAnh = db.Images.Where(x => x.ImageID == prd.ImageID).ToList(),
-                          }).ToList();
+                          }).FirstOrDefault();
             return result;
         }
-
+        [Route("GetProductByCategoryID")]
+        [HttpGet]
+        public object GetProductByCategoryID(int CategoryID)
+        {
+            var result = db.Products.Where(x => x.CategoryID == CategoryID).ToList();
+            return result;
+        }
         [Route("AddOrEditProduct")]
         [HttpPost]
         public object AddOrEditProduct(Product1 Product1)
