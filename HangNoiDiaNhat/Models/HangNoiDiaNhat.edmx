@@ -95,7 +95,6 @@
             <PropertyRef Name="ImageID" />
           </Key>
           <Property Name="ImageID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
-          <Property Name="ProductID" Type="int" />
           <Property Name="ProductName" Type="nvarchar(max)" />
           <Property Name="Image" Type="nvarchar(max)" />
           <Property Name="CreatedAt" Type="datetime" />
@@ -185,7 +184,6 @@
           <Property Name="AccountID" Type="int" />
           <Property Name="ProductDetailID" Type="int" />
           <Property Name="BrandID" Type="int" />
-          <Property Name="ImageID" Type="int" />
           <Property Name="Slug" Type="nvarchar(max)" />
           <Property Name="Thumbnail" Type="nvarchar(max)" />
           <Property Name="Details" Type="nvarchar(max)" />
@@ -400,7 +398,6 @@
             <PropertyRef Name="ImageID" />
           </Key>
           <Property Name="ImageID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-          <Property Name="ProductID" Type="Int32" />
           <Property Name="ProductName" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
           <Property Name="Image1" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
           <Property Name="CreatedAt" Type="DateTime" Precision="3" />
@@ -490,7 +487,6 @@
           <Property Name="AccountID" Type="Int32" />
           <Property Name="ProductDetailID" Type="Int32" />
           <Property Name="BrandID" Type="Int32" />
-          <Property Name="ImageID" Type="Int32" />
           <Property Name="Slug" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
           <Property Name="Thumbnail" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
           <Property Name="Details" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
@@ -712,7 +708,6 @@
             <EntityTypeMapping TypeName="HangNoiDiaNhatModel.Image">
               <MappingFragment StoreEntitySet="Images">
                 <ScalarProperty Name="ImageID" ColumnName="ImageID" />
-                <ScalarProperty Name="ProductID" ColumnName="ProductID" />
                 <ScalarProperty Name="ProductName" ColumnName="ProductName" />
                 <ScalarProperty Name="Image1" ColumnName="Image" />
                 <ScalarProperty Name="CreatedAt" ColumnName="CreatedAt" />
@@ -809,7 +804,6 @@
                 <ScalarProperty Name="AccountID" ColumnName="AccountID" />
                 <ScalarProperty Name="ProductDetailID" ColumnName="ProductDetailID" />
                 <ScalarProperty Name="BrandID" ColumnName="BrandID" />
-                <ScalarProperty Name="ImageID" ColumnName="ImageID" />
                 <ScalarProperty Name="Slug" ColumnName="Slug" />
                 <ScalarProperty Name="Thumbnail" ColumnName="Thumbnail" />
                 <ScalarProperty Name="Details" ColumnName="Details" />

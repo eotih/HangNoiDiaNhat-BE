@@ -176,14 +176,6 @@ namespace HangNoiDiaNhat.Controllers
             var result = db.Images.ToList();
             return result;
         }
-        [Route("GetImageByProductId")]
-        [HttpGet]
-        public object GetImageByProductId(int ProductID)
-        {
-            var result = db.Images.Where(x => x.ProductID == ProductID).FirstOrDefault();
-            return result;
-        }
-
         [Route("AddOrEditProductImage")]
         [HttpPost]
         public object AddOrEditProductImage(Image1 img1)
@@ -192,7 +184,6 @@ namespace HangNoiDiaNhat.Controllers
             {
                 Image img = new Image
                 {
-                    ProductID = img1.ProductID,
                     ProductName = img1.ProductName,
                     Image1 = img1.Image2,
                     CreatedAt = DateTime.Now
@@ -210,7 +201,6 @@ namespace HangNoiDiaNhat.Controllers
                 var obj = db.Images.Where(x => x.ImageID == img1.ImageID).FirstOrDefault();
                 if (obj.ImageID > 0)
                 {
-                    obj.ProductID = img1.ProductID;
                     obj.ProductName = img1.ProductName;
                     obj.Image1 = img1.Image2;
                     obj.UpdatedAt = DateTime.Now;
@@ -271,8 +261,15 @@ namespace HangNoiDiaNhat.Controllers
                               NhanVien = acc.FullName,
                               ThuongHieu = brand.Thumbnail,
                               ChucNang = db.ProductDetails.Where(x => x.ProductID == prd.ProductID).ToList(),
-                              HinhAnh = db.Images.Where(x => x.ImageID == prd.ImageID).ToList(),
+                              HinhAnh = db.Images.Where(x => x.ProductName == prd.Name).ToList(),
                           }).ToList();
+            return result;
+        }
+        [Route("GetProductImageByProductName")]
+        [HttpGet]
+        public object GetProductImageByProductName(string ProductName)
+        {
+            var result = db.Images.Where(x => x.ProductName == ProductName).ToList();
             return result;
         }
         [Route("GetProductBySlug")]
@@ -303,8 +300,8 @@ namespace HangNoiDiaNhat.Controllers
                               TheLoai = cate.Name,
                               NhanVien = nv.FullName,
                               ThuongHieu = br.Thumbnail,
-                              ChucNang = db.ProductDetails.Where(x => x.ProductDetailID == prd.ProductDetailID).ToList(),
-                              HinhAnh = db.Images.Where(x => x.ImageID == prd.ImageID).ToList(),
+                              ChucNang = db.ProductDetails.Where(x => x.ProductID == prd.ProductID).ToList(),
+                              HinhAnh = db.Images.Where(x => x.ProductName == prd.Name).ToList(),
                           }).FirstOrDefault();
             return result;
         }
@@ -315,6 +312,28 @@ namespace HangNoiDiaNhat.Controllers
             var result = db.Products.Where(x => x.CategoryID == CategoryID).ToList();
             return result;
         }
+        [Route("EditProductDetails")]
+        [HttpPost]
+        public object EditProductDetails(Product1 Product1)
+        {
+            var obj = db.Products.Where(x => x.ProductID == Product1.ProductID).FirstOrDefault();
+            if (obj.ProductID > 0)
+            {
+                obj.ProductDetailID = Product1.ProductDetailID;
+                obj.UpdatedAt = DateTime.Now;
+                db.SaveChanges();
+                return new Response
+                {
+                    Status = "Updated",
+                    Message = "Updated Successfully"
+                };
+            }
+            return new Response
+            {
+                Status = "Error",
+                Message = "Data not insert"
+            };
+        }
         [Route("AddOrEditProduct")]
         [HttpPost]
         public object AddOrEditProduct(Product1 Product1)
@@ -323,11 +342,9 @@ namespace HangNoiDiaNhat.Controllers
             {
                 Product prd = new Product
                 {
-                    CategoryID = Product1.ProductID,
+                    CategoryID = Product1.CategoryID,
                     AccountID = Product1.AccountID,
-                    ProductDetailID = Product1.ProductDetailID,
                     BrandID = Product1.BrandID,
-                    ImageID = Product1.ImageID,
                     Slug = Utilities.ReplaceSpecialChars(Product1.Name),
                     Thumbnail = Product1.Thumbnail,
                     Details = Product1.Details,
@@ -352,11 +369,9 @@ namespace HangNoiDiaNhat.Controllers
                 var obj = db.Products.Where(x => x.ProductID == Product1.ProductID).FirstOrDefault();
                 if (obj.ProductID > 0)
                 {
-                    obj.CategoryID = Product1.ProductID;
+                    obj.CategoryID = Product1.CategoryID;
                     obj.AccountID = Product1.AccountID;
-                    obj.ProductDetailID = Product1.ProductDetailID;
                     obj.BrandID = Product1.BrandID;
-                    obj.ImageID = Product1.ImageID;
                     obj.Slug = Utilities.ReplaceSpecialChars(Product1.Name);
                     obj.Thumbnail = Product1.Thumbnail;
                     obj.Details = Product1.Details;

@@ -4,7 +4,7 @@
   <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
     <!-- Diagram content (shape and connector positions) -->
     <edmx:Diagrams>
-      <Diagram DiagramId="cc567223c46f401b99b52fe57fa11796" Name="Diagram1">
+      <Diagram DiagramId="d32aa7777d7943f5acc17518736c8b72" Name="Diagram1">
         <EntityTypeShape EntityType="HangNoiDiaNhatModel.Account" Width="1.5" PointX="0.75" PointY="0.75" IsExpanded="true" />
         <EntityTypeShape EntityType="HangNoiDiaNhatModel.Banner" Width="1.5" PointX="2.75" PointY="0.75" IsExpanded="true" />
         <EntityTypeShape EntityType="HangNoiDiaNhatModel.Brand" Width="1.5" PointX="2.75" PointY="3.75" IsExpanded="true" />
@@ -20,13 +20,13 @@
         <EntityTypeShape EntityType="HangNoiDiaNhatModel.Post" Width="1.5" PointX="8.75" PointY="3.75" IsExpanded="true" />
         <EntityTypeShape EntityType="HangNoiDiaNhatModel.ProductDetail" Width="1.5" PointX="8.75" PointY="7.75" IsExpanded="true" />
         <EntityTypeShape EntityType="HangNoiDiaNhatModel.Product" Width="1.5" PointX="10.75" PointY="0.75" IsExpanded="true" />
-        <EntityTypeShape EntityType="HangNoiDiaNhatModel.Role" Width="1.5" PointX="10.75" PointY="6.75" IsExpanded="true" />
-        <EntityTypeShape EntityType="HangNoiDiaNhatModel.Service" Width="1.5" PointX="8.75" PointY="10.75" IsExpanded="true" />
-        <EntityTypeShape EntityType="HangNoiDiaNhatModel.Shipper" Width="1.5" PointX="10.75" PointY="9.75" IsExpanded="true" />
-        <EntityTypeShape EntityType="HangNoiDiaNhatModel.ShippingDepartment" Width="1.5" PointX="0.75" PointY="11.75" IsExpanded="true" />
-        <EntityTypeShape EntityType="HangNoiDiaNhatModel.State" Width="1.5" PointX="2.75" PointY="11.75" IsExpanded="true" />
-        <EntityTypeShape EntityType="HangNoiDiaNhatModel.TrackingOrder" Width="1.5" PointX="4.75" PointY="11.75" IsExpanded="true" />
-        <EntityTypeShape EntityType="HangNoiDiaNhatModel.Utility" Width="1.5" PointX="12.75" PointY="0.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="HangNoiDiaNhatModel.Role" Width="1.5" PointX="10.75" PointY="5.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="HangNoiDiaNhatModel.Service" Width="1.5" PointX="10.75" PointY="8.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="HangNoiDiaNhatModel.Shipper" Width="1.5" PointX="0.75" PointY="11.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="HangNoiDiaNhatModel.ShippingDepartment" Width="1.5" PointX="2.75" PointY="11.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="HangNoiDiaNhatModel.State" Width="1.5" PointX="4.75" PointY="11.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="HangNoiDiaNhatModel.TrackingOrder" Width="1.5" PointX="6.75" PointY="11.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="HangNoiDiaNhatModel.Utility" Width="1.5" PointX="8.75" PointY="11.75" IsExpanded="true" />
       </Diagram>
     </edmx:Diagrams>
   </edmx:Designer>

@@ -19,7 +19,6 @@ namespace HangNoiDiaNhat.Models
         public Nullable<int> AccountID { get; set; }
         public Nullable<int> ProductDetailID { get; set; }
         public Nullable<int> BrandID { get; set; }
-        public Nullable<int> ImageID { get; set; }
         public string Slug { get; set; }
         public string Thumbnail { get; set; }
         public string Details { get; set; }

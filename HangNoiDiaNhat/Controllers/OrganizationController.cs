@@ -243,7 +243,7 @@ namespace HangNoiDiaNhat.Controllers
                     obj.Phone = Account1.Phone;
                     obj.Email = Account1.Email;
                     obj.Image = Account1.Image;
-                    obj.Password = Utilities.GetMD5(Account1.Password);
+                    //obj.Password = Utilities.GetMD5(Account1.Password);
                     obj.Address = Account1.Address;
                     obj.UpdatedAt = DateTime.Now;
                     db.SaveChanges();
@@ -253,6 +253,29 @@ namespace HangNoiDiaNhat.Controllers
                         Message = "Updated Successfully"
                     };
                 }
+            }
+            return new Response
+            {
+                Status = "Error",
+                Message = "Data not insert"
+            };
+        }
+        [Route("ChangePassword")]
+        [HttpPost]
+        public object ChangePassword(Account1 Account1)
+        {
+            var obj = db.Accounts.Where(x => x.AccountID == Account1.AccountID).FirstOrDefault();
+            if (obj.AccountID > 0)
+            {
+                obj.Password = Utilities.GetMD5(Account1.Password);
+                obj.UpdatedAt = DateTime.Now;
+                db.SaveChanges();
+                return new Response
+                {
+                    Status = "Updated",
+                    Message = "Updated Successfully"
+                };
+
             }
             return new Response
             {
