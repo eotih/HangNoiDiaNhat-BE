@@ -276,33 +276,34 @@ namespace HangNoiDiaNhat.Controllers
         [HttpGet]
         public object GetProductBySlug(string Slug)
         {
-            var getProductBySlug = db.Products.Where(x => x.Slug == Slug).ToList();
-            var result = (from prd in getProductBySlug
-                          from cate in db.Categories
-                          from nv in db.Accounts
-                          from br in db.Brands
-                          where br.BrandID == prd.BrandID
-                          where nv.AccountID == prd.AccountID
-                          where cate.CategoryID == prd.CategoryID
-                          select new
-                          {
-                              prd.Name,
-                              prd.Slug,
-                              prd.Details,
-                              prd.Quantity,
-                              prd.Price,
-                              prd.Discount,
-                              prd.ImportPrice,
-                              prd.Sold,
-                              prd.Thumbnail,
-                              prd.CreatedAt,
-                              prd.UpdatedAt,
-                              TheLoai = cate.Name,
-                              NhanVien = nv.FullName,
-                              ThuongHieu = br.Thumbnail,
-                              ChucNang = db.ProductDetails.Where(x => x.ProductID == prd.ProductID).ToList(),
-                              HinhAnh = db.Images.Where(x => x.ProductName == prd.Name).ToList(),
-                          }).FirstOrDefault();
+            var result = db.Products.Where(x => x.Slug == Slug).FirstOrDefault();
+            //var getProductBySlug = db.Products.Where(x => x.Slug == Slug).ToList();
+            //var result = (from prd in getProductBySlug
+            //              from cate in db.Categories
+            //              from nv in db.Accounts
+            //              from br in db.Brands
+            //              where br.BrandID == prd.BrandID
+            //              where nv.AccountID == prd.AccountID
+            //              where cate.CategoryID == prd.CategoryID
+            //              select new
+            //              {
+            //                  prd.Name,
+            //                  prd.Slug,
+            //                  prd.Details,
+            //                  prd.Quantity,
+            //                  prd.Price,
+            //                  prd.Discount,
+            //                  prd.ImportPrice,
+            //                  prd.Sold,
+            //                  prd.Thumbnail,
+            //                  prd.CreatedAt,
+            //                  prd.UpdatedAt,
+            //                  TheLoai = cate.Name,
+            //                  NhanVien = nv.FullName,
+            //                  ThuongHieu = br.Thumbnail,
+            //                  ChucNang = db.ProductDetails.Where(x => x.ProductID == prd.ProductID).ToList(),
+            //                  HinhAnh = db.Images.Where(x => x.ProductName == prd.Name).ToList(),
+            //              }).FirstOrDefault();
             return result;
         }
         [Route("GetProductByCategoryID")]
@@ -353,7 +354,6 @@ namespace HangNoiDiaNhat.Controllers
                     Price = Product1.Price,
                     Discount = Product1.Discount,
                     ImportPrice = Product1.ImportPrice,
-                    Sold = Product1.Sold,
                     CreatedAt = DateTime.Now
                 };
                 db.Products.Add(prd);
@@ -380,7 +380,6 @@ namespace HangNoiDiaNhat.Controllers
                     obj.Price = Product1.Price;
                     obj.Discount = Product1.Discount;
                     obj.ImportPrice = Product1.ImportPrice;
-                    obj.Sold = Product1.Sold;
                     obj.UpdatedAt = DateTime.Now;
                     db.SaveChanges();
                     return new Response
