@@ -104,6 +104,7 @@ namespace HangNoiDiaNhat.Controllers
                               Posts.Thumbnail,
                               Posts.CreatedAt,
                               Posts.UpdatedAt,
+                              Posts.StateID,
                               LinhVuc = field.Name,
                               TrangThai = state.Name,
                           }).ToList();
