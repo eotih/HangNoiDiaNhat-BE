@@ -40,7 +40,7 @@ namespace HangNoiDiaNhat.Models
         }
 
         private static string Secret = "ERMN05OPLoDvbTTa/QkqLNMI7cPLguaRyHzyg7n5qNBVjQmtBhz4SzYh4NBVCXi3KJHlSXKP+oi2+bXr6CUYTR==";
-        public static string GenerateToken(int AccountID)
+        public static string GenerateToken(int AccountID,int RoleID)
         {
             byte[] key = Convert.FromBase64String(Secret);
             SymmetricSecurityKey securityKey = new SymmetricSecurityKey(key);
@@ -48,6 +48,7 @@ namespace HangNoiDiaNhat.Models
             {
                 Subject = new ClaimsIdentity(new[] {
                       new Claim(ClaimTypes.NameIdentifier, AccountID.ToString()),
+                      new Claim(ClaimTypes.NameIdentifier, RoleID.ToString()),
 
                   }),
                 Expires = DateTime.UtcNow.AddMinutes(240),

@@ -170,7 +170,7 @@ namespace HangNoiDiaNhat.Controllers
                 var user = db.Accounts.Where(s => s.Email.Equals(lg.Email) && s.Password.Equals(f_password)).FirstOrDefault();
                 if (user != null)
                 {
-                    return new Response() { Status = "Success", Message = Utilities.GenerateToken(user.AccountID) };
+                    return new Response() { Status = "Success", Message = Utilities.GenerateToken(user.AccountID, Convert.ToInt32(user.RoleID)) };
                 }
             }
             else

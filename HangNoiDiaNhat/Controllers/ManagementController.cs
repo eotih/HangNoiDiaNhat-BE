@@ -231,6 +231,22 @@ namespace HangNoiDiaNhat.Controllers
                 Message = "Delete Successfuly"
             };
         }
+        [Route("DeleteImageWhereProductName")]
+        [HttpDelete]
+        public object DeleteImageWhereProductName(string ProductName)
+        {
+            var obj = db.Images.Where(x => x.ProductName == ProductName).ToList();
+            for (int i = 0; i < obj.Count; i++)
+            {
+                db.Images.Remove(obj[i]);
+            }
+            db.SaveChanges();
+            return new Response
+            {
+                Status = "Deleted",
+                Message = "Delete Successfuly"
+            };
+        }
         //---------------------------- Product Zone ----------------------------//
         [Route("SelectAllProduct")]
         [HttpGet]
@@ -311,6 +327,13 @@ namespace HangNoiDiaNhat.Controllers
         public object GetProductByCategoryID(int CategoryID)
         {
             var result = db.Products.Where(x => x.CategoryID == CategoryID).ToList();
+            return result;
+        }
+        [Route("GetProductWhereProductDetailNull")]
+        [HttpGet]
+        public object GetProductWhereProductDetailNull()
+        {
+            var result = db.Products.Where(x => x.ProductDetailID == null).ToList();
             return result;
         }
         [Route("EditProductDetails")]
