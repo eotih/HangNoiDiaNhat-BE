@@ -204,7 +204,7 @@ namespace HangNoiDiaNhat.Controllers
                               acc.CreatedAt,
                               acc.UpdatedAt,
                               Role = db.Roles.Where(x => x.RoleID == acc.RoleID).FirstOrDefault(),
-                          }).ToList();
+                          }).FirstOrDefault();
             return result;
         }
 
