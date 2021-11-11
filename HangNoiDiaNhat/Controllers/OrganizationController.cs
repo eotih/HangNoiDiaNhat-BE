@@ -190,21 +190,8 @@ namespace HangNoiDiaNhat.Controllers
         [HttpGet]
         public object GetAccountById(int AccountID)
         {
-            var getAccountByID = db.Accounts.Where(x => x.AccountID == AccountID).ToList();
-            var result = (from acc in getAccountByID
-                          select new
-                          {
-                              acc.AccountID,
-                              acc.FullName,
-                              acc.Phone,
-                              acc.Email,
-                              acc.Password,
-                              acc.Address,
-                              acc.Image,
-                              acc.CreatedAt,
-                              acc.UpdatedAt,
-                              Role = db.Roles.Where(x => x.RoleID == acc.RoleID).FirstOrDefault(),
-                          }).FirstOrDefault();
+            var result = db.Accounts.Where(x => x.AccountID == AccountID).FirstOrDefault();
+           
             return result;
         }
 

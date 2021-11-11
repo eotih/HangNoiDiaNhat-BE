@@ -29,6 +29,7 @@ namespace HangNoiDiaNhat.Models
         public virtual DbSet<Banner> Banners { get; set; }
         public virtual DbSet<Brand> Brands { get; set; }
         public virtual DbSet<Category> Categories { get; set; }
+        public virtual DbSet<Comment> Comments { get; set; }
         public virtual DbSet<Contact> Contacts { get; set; }
         public virtual DbSet<Customer> Customers { get; set; }
         public virtual DbSet<Field> Fields { get; set; }

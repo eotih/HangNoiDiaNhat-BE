@@ -206,6 +206,10 @@
       <DependentUpon>HangNoiDiaNhat.tt</DependentUpon>
     </Compile>
     <Compile Include="Models\Category1.cs" />
+    <Compile Include="Models\Comment.cs">
+      <DependentUpon>HangNoiDiaNhat.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\Comment1.cs" />
     <Compile Include="Models\Contact.cs">
       <DependentUpon>HangNoiDiaNhat.tt</DependentUpon>
     </Compile>

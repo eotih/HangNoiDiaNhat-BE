@@ -52,6 +52,18 @@
           <Property Name="CreatedAt" Type="datetime" />
           <Property Name="UpdatedAt" Type="datetime" />
         </EntityType>
+        <EntityType Name="Comments">
+          <Key>
+            <PropertyRef Name="CommentID" />
+          </Key>
+          <Property Name="CommentID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="CustomerID" Type="int" Nullable="false" />
+          <Property Name="ProductID" Type="int" Nullable="false" />
+          <Property Name="Comment" Type="nvarchar(max)" />
+          <Property Name="Star" Type="int" />
+          <Property Name="CreatedAt" Type="datetime" Nullable="false" />
+          <Property Name="UpdatedAt" Type="datetime" />
+        </EntityType>
         <EntityType Name="Contacts">
           <Key>
             <PropertyRef Name="ContactID" />
@@ -284,6 +296,7 @@
           <EntitySet Name="Banners" EntityType="Self.Banners" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Brands" EntityType="Self.Brands" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Categories" EntityType="Self.Categories" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Comments" EntityType="Self.Comments" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Contacts" EntityType="Self.Contacts" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Customers" EntityType="Self.Customers" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Fields" EntityType="Self.Fields" Schema="dbo" store:Type="Tables" />
@@ -353,6 +366,18 @@
           <Property Name="Slug" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
           <Property Name="Thumbnail" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
           <Property Name="CreatedAt" Type="DateTime" Precision="3" />
+          <Property Name="UpdatedAt" Type="DateTime" Precision="3" />
+        </EntityType>
+        <EntityType Name="Comment">
+          <Key>
+            <PropertyRef Name="CommentID" />
+          </Key>
+          <Property Name="CommentID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="CustomerID" Type="Int32" Nullable="false" />
+          <Property Name="ProductID" Type="Int32" Nullable="false" />
+          <Property Name="Comment1" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="Star" Type="Int32" />
+          <Property Name="CreatedAt" Type="DateTime" Nullable="false" Precision="3" />
           <Property Name="UpdatedAt" Type="DateTime" Precision="3" />
         </EntityType>
         <EntityType Name="Contact">
@@ -587,6 +612,7 @@
           <EntitySet Name="Banners" EntityType="Self.Banner" />
           <EntitySet Name="Brands" EntityType="Self.Brand" />
           <EntitySet Name="Categories" EntityType="Self.Category" />
+          <EntitySet Name="Comments" EntityType="Self.Comment" />
           <EntitySet Name="Contacts" EntityType="Self.Contact" />
           <EntitySet Name="Customers" EntityType="Self.Customer" />
           <EntitySet Name="Fields" EntityType="Self.Field" />
@@ -658,6 +684,19 @@
                 <ScalarProperty Name="Name" ColumnName="Name" />
                 <ScalarProperty Name="Slug" ColumnName="Slug" />
                 <ScalarProperty Name="Thumbnail" ColumnName="Thumbnail" />
+                <ScalarProperty Name="CreatedAt" ColumnName="CreatedAt" />
+                <ScalarProperty Name="UpdatedAt" ColumnName="UpdatedAt" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Comments">
+            <EntityTypeMapping TypeName="HangNoiDiaNhatModel.Comment">
+              <MappingFragment StoreEntitySet="Comments">
+                <ScalarProperty Name="CommentID" ColumnName="CommentID" />
+                <ScalarProperty Name="CustomerID" ColumnName="CustomerID" />
+                <ScalarProperty Name="ProductID" ColumnName="ProductID" />
+                <ScalarProperty Name="Comment1" ColumnName="Comment" />
+                <ScalarProperty Name="Star" ColumnName="Star" />
                 <ScalarProperty Name="CreatedAt" ColumnName="CreatedAt" />
                 <ScalarProperty Name="UpdatedAt" ColumnName="UpdatedAt" />
               </MappingFragment>

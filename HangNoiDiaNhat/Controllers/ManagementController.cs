@@ -247,6 +247,55 @@ namespace HangNoiDiaNhat.Controllers
                 Message = "Delete Successfuly"
             };
         }
+        //---------------------------- Comment & Star Zone ----------------------------//
+        [Route("SelectAllCommentAndStar")]
+        [HttpGet]
+        public object SelectAllCommentAndStar()
+        {
+            var result = db.Comments.ToList();
+            return result;
+        }
+        [Route("AddCommentAndStar")]
+        [HttpPost]
+        public object AddCommentAndStar(Comment1 cmt)
+        {
+            if (cmt.CommentID == 0)
+            {
+                Comment comment = new Comment
+                {
+                    CustomerID = cmt.CustomerID,
+                    ProductID = cmt.ProductID,
+                    Comment1 = cmt.Comment2,
+                    Star = cmt.Star,
+                    CreatedAt = DateTime.Now
+                };
+                db.Comments.Add(comment);
+                db.SaveChanges();
+                return new Response
+                {
+                    Status = "Success",
+                    Message = "Data Success"
+                };
+            }
+            return new Response
+            {
+                Status = "Error",
+                Message = "Data not insert"
+            };
+        }
+        [Route("DeleteCommentAndStar")]
+        [HttpDelete]
+        public object DeleteCommentAndStar(int CommentID)
+        {
+            var obj = db.Comments.Where(x => x.CommentID == CommentID).FirstOrDefault();
+            db.Comments.Remove(obj);
+            db.SaveChanges();
+            return new Response
+            {
+                Status = "Deleted",
+                Message = "Delete Successfuly"
+            };
+        }
         //---------------------------- Product Zone ----------------------------//
         [Route("SelectAllProduct")]
         [HttpGet]
