@@ -252,7 +252,29 @@ namespace HangNoiDiaNhat.Controllers
         [HttpGet]
         public object SelectAllCommentAndStar()
         {
-            var result = db.Comments.ToList();
+            var result = (from cmt in db.Comments
+                          from prd in db.Products
+                          from cus in db.Customers
+                          where cus.CustomerID == cmt.CustomerID
+                          where prd.ProductID == cmt.ProductID
+                          select new
+                          {
+                              cmt.CommentID,
+                              cmt.Comment1,
+                              cmt.CreatedAt,
+                              cmt.UpdatedAt,
+                              cmt.Star,
+                              KhachHang = cus.FullName,
+                              TenSanPham = prd.Name,
+                              prd.Thumbnail,
+                          }).ToList();
+            return result;
+        }
+        [Route("GetCommentAndStarByCommentID")]
+        [HttpGet]
+        public object GetCommentAndStarByCommentID(int CommentID)
+        {
+            var result = db.Comments.Where(x => x.CommentID == CommentID).FirstOrDefault();
             return result;
         }
         [Route("AddCommentAndStar")]
