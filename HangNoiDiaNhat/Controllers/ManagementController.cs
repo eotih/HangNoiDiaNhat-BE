@@ -340,6 +340,7 @@ namespace HangNoiDiaNhat.Controllers
                               prd.Price,
                               prd.Discount,
                               prd.ImportPrice,
+                              prd.Description,
                               prd.Sold,
                               prd.Thumbnail,
                               prd.CreatedAt,
@@ -443,6 +444,7 @@ namespace HangNoiDiaNhat.Controllers
                     Slug = Utilities.ReplaceSpecialChars(Product1.Name),
                     Thumbnail = Product1.Thumbnail,
                     Details = Product1.Details,
+                    Description = Product1.Description,
                     Name = Product1.Name,
                     Quantity = Product1.Quantity,
                     Price = Product1.Price,
@@ -469,6 +471,7 @@ namespace HangNoiDiaNhat.Controllers
                     obj.Slug = Utilities.ReplaceSpecialChars(Product1.Name);
                     obj.Thumbnail = Product1.Thumbnail;
                     obj.Details = Product1.Details;
+                    obj.Description = Product1.Description;
                     obj.Name = Product1.Name;
                     obj.Quantity = Product1.Quantity;
                     obj.Price = Product1.Price;

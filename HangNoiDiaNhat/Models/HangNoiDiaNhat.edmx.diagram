@@ -4,7 +4,7 @@
   <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
     <!-- Diagram content (shape and connector positions) -->
     <edmx:Diagrams>
-      <Diagram DiagramId="ca02d9baebf149229752ec8137d3c66b" Name="Diagram1">
+      <Diagram DiagramId="67a8172cf5f645c0810b6ff34d8c888e" Name="Diagram1">
         <EntityTypeShape EntityType="HangNoiDiaNhatModel.Account" Width="1.5" PointX="0.75" PointY="0.75" IsExpanded="true" />
         <EntityTypeShape EntityType="HangNoiDiaNhatModel.Banner" Width="1.5" PointX="2.75" PointY="0.75" IsExpanded="true" />
         <EntityTypeShape EntityType="HangNoiDiaNhatModel.Brand" Width="1.5" PointX="2.75" PointY="3.75" IsExpanded="true" />

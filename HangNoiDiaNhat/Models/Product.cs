@@ -21,6 +21,7 @@ namespace HangNoiDiaNhat.Models
         public Nullable<int> BrandID { get; set; }
         public string Slug { get; set; }
         public string Thumbnail { get; set; }
+        public string Description { get; set; }
         public string Details { get; set; }
         public string Name { get; set; }
         public Nullable<int> Quantity { get; set; }
