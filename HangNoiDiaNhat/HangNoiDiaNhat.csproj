@@ -241,6 +241,10 @@
       <DependentUpon>HangNoiDiaNhat.tt</DependentUpon>
     </Compile>
     <Compile Include="Models\Image1.cs" />
+    <Compile Include="Models\ImagesComment.cs">
+      <DependentUpon>HangNoiDiaNhat.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\ImagesComment1.cs" />
     <Compile Include="Models\Login.cs" />
     <Compile Include="Models\Order.cs">
       <DependentUpon>HangNoiDiaNhat.tt</DependentUpon>

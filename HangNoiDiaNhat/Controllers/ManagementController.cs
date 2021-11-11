@@ -267,6 +267,9 @@ namespace HangNoiDiaNhat.Controllers
                               KhachHang = cus.FullName,
                               TenSanPham = prd.Name,
                               prd.Thumbnail,
+                              prd.Slug,
+                              prd.Description,
+                              HinhAnh = db.ImagesComments.Where(x => x.CommentID == cmt.CommentID).ToList(),
                           }).ToList();
             return result;
         }
@@ -311,6 +314,83 @@ namespace HangNoiDiaNhat.Controllers
         {
             var obj = db.Comments.Where(x => x.CommentID == CommentID).FirstOrDefault();
             db.Comments.Remove(obj);
+            db.SaveChanges();
+            return new Response
+            {
+                Status = "Deleted",
+                Message = "Delete Successfuly"
+            };
+        }
+        //---------------------------- Comment & Star Zone ----------------------------//
+        [Route("SelectAllImagesComment")]
+        [HttpGet]
+        public object SelectAllImagesComment()
+        {
+            var result = db.ImagesComments.ToList();
+            return result;
+        }
+        [Route("GetImagesCommentByImageCommentID")]
+        [HttpGet]
+        public object GetImagesCommentByImageCommentID(int ImageCommentID)
+        {
+            var result = db.ImagesComments.Where(x => x.ImageCommentID == ImageCommentID).FirstOrDefault();
+            return result;
+        }
+        [Route("GetImagesCommentByCommentID")]
+        [HttpGet]
+        public object GetImagesCommentByCommentID(int CommentID)
+        {
+            var result = db.ImagesComments.Where(x => x.CommentID == CommentID).ToList();
+            return result;
+        }
+        [Route("AddOrEditImageComment")]
+        [HttpPost]
+        public object AddOrEditImageComment(ImagesComment1 imgCmt)
+        {
+            if (imgCmt.ImageCommentID == 0)
+            {
+                ImagesComment img = new ImagesComment
+                {
+                    CommentID = imgCmt.CommentID,
+                    Image = imgCmt.Image,
+                    CreatedAt = DateTime.Now
+                };
+                db.ImagesComments.Add(img);
+                db.SaveChanges();
+                return new Response
+                {
+                    Status = "Success",
+                    Message = "Data Success"
+                };
+            }
+            else
+            {
+                var obj = db.ImagesComments.Where(x => x.ImageCommentID == imgCmt.ImageCommentID).FirstOrDefault();
+                if (obj.ImageCommentID > 0)
+                {
+                    obj.CommentID = imgCmt.CommentID;
+                    obj.Image = imgCmt.Image;
+                    obj.UpdatedAt = DateTime.Now;
+                    db.SaveChanges();
+                    return new Response
+                    {
+                        Status = "Updated",
+                        Message = "Updated Successfully"
+                    };
+                }
+            }
+            return new Response
+            {
+                Status = "Error",
+                Message = "Data not insert"
+            };
+        }
+        [Route("DeleteImageComment")]
+        [HttpDelete]
+        public object DeleteImageComment(int ImageCommentID)
+        {
+            var obj = db.ImagesComments.Where(x => x.ImageCommentID == ImageCommentID).FirstOrDefault();
+            db.ImagesComments.Remove(obj);
             db.SaveChanges();
             return new Response
             {
